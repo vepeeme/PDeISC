@@ -1,6 +1,6 @@
 //cambia el color de fondo
 function enfoque() {
-    this.style.backgroundColor = '#e0ffe0';
+    this.style.backgroundColor = 'blue';
 }
 //quita el color de fondo
 function desenfoque() {

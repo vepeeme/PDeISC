@@ -1,6 +1,6 @@
 //cambia el color del fondo a amarillo
 function encima() {
-    this.style.backgroundColor = 'yellow';
+    this.style.backgroundColor = 'purple';
 }
 //quita el color de fondo
 function soltar() {

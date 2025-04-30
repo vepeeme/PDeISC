@@ -2,7 +2,7 @@
 function handleDobleClick() {
     const mensaje = document.getElementById('caja');
     mensaje.textContent = 'Apretaste dos veces el click';
-    mensaje.style.color = 'red';
+    mensaje.style.color = 'purple';
 
     //Borra el mensaje a los 2 segundos
     setTimeout(() => {

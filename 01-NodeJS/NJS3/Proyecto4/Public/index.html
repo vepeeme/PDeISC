@@ -24,7 +24,7 @@
         }
         /* Estilo de los botones */
         button {
-            background-color: #4CAF50;
+            background-color: blue;
             color: white;
             border: none;
             padding: 12px 20px;
@@ -36,7 +36,7 @@
         }
         /* Estilo de los botones al pasar el mouse por encima */
         button:hover {
-            background-color: #45a049;
+            background-color: darkblue;
         }
         /* Estilo del div que contiene los enlaces */
         #links {
@@ -62,6 +62,13 @@
             background-color: #e0e0e0;
             color: #000;
         }
+        /* Estilo para quitar los puntos y márgenes de la lista de cambios */
+#listaCambios {
+    list-style-type: none;  /* Quita los bullets/puntos */
+    padding: 0;              /* Elimina el padding izquierdo */
+    margin: 0;               /* Elimina el margen por defecto */
+}
+
     </style>    
 </head>
 <body>
@@ -72,6 +79,10 @@
         <button id="eliminarNodos">Eliminar enlaces</button>
     </div>
     <div id="links"></div>
+    <div id="resultado">
+        <h3>Cambios realizados:</h3>
+        <ul id="listaCambios"></ul>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

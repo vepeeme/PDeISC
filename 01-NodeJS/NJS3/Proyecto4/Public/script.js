@@ -1,13 +1,14 @@
-//se asigna constantes con los id de cada boton 
+// crea constantes con los valores de los botones 
 const botonCrear = document.getElementById('crearNodos');
 const botonModificar = document.getElementById('modificarNodos');
 const botonEliminar = document.getElementById('eliminarNodos');
 const contenedorLinks = document.getElementById('links');
+const listaCambios = document.getElementById('listaCambios');
 
-//cantidad de enlaces
+//cantidad de enlaces que se puede crear
 const enlace = 5;
 
-// array que tiene los enlaces para crear
+// Array con los enlaces que se van a crear
 const enlacesIniciales = [
     { texto: 'Google', href: 'https://www.google.com' },
     { texto: 'YouTube', href: 'https://www.youtube.com' },
@@ -16,7 +17,7 @@ const enlacesIniciales = [
     { texto: 'Twitter', href: 'https://www.twitter.com' }
 ];
 
-// array con los nuevos enlaces
+// Enlaces con los que se van a modificar
 const nuevosEnlaces = [
     { texto: 'Bing', href: 'https://www.bing.com' },
     { texto: 'Vimeo', href: 'https://www.vimeo.com' },
@@ -25,14 +26,15 @@ const nuevosEnlaces = [
     { texto: 'Instagram', href: 'https://www.instagram.com' }
 ];
 
-// crea los enlaces 
+// Crea los enlaces 
 function crearNodos() {
     const enlacesActuales = document.querySelectorAll('#links a').length;
 
     if (enlacesActuales >= enlace) {
+        agregarCambio('Ya existen 5 enlaces. No se pueden crear más.');
         return;
     }
-    //recorre el array de los enlaces iniciales y crea las etiquetas de enlaces con sus atributos
+
     for (let i = enlacesActuales; i < enlace; i++) {
         const enlace = enlacesIniciales[i];
         const a = document.createElement('a');
@@ -44,34 +46,53 @@ function crearNodos() {
         a.style.marginBottom = '5px';
         contenedorLinks.appendChild(a);
     }
+    agregarCambio(`Se crearon ${enlace - enlacesActuales} enlaces.`);
 }
 
-// Modifica los enlaces ya creados
+// Modifica los enlaces ya existentes
 function modificarNodos() {
     const enlaces = document.querySelectorAll('#links a');
     if (enlaces.length === 0) {
+        agregarCambio('No hay enlaces para modificar.');
         return;
     }
-    //recorre el array para cambiar los atributos de los enlaces
+
+    listaCambios.innerHTML = ''; // Limpiar lista de cambios anteriores
+
     enlaces.forEach((a, index) => {
         if (nuevosEnlaces[index]) {
+            const hrefAntiguo = a.href;
+            const textoAntiguo = a.textContent;
+
             a.href = nuevosEnlaces[index].href;
             a.textContent = nuevosEnlaces[index].texto;
+
+            const itemCambio = document.createElement('li');
+            itemCambio.textContent = `Enlace cambiado de "${textoAntiguo}" a "${a.textContent}" `;
+            listaCambios.appendChild(itemCambio);
         }
     });
 }
 
-// Elimina los enlaces creados
+// Elimina todos los enlaces
 function eliminarNodos() {
     const enlaces = document.querySelectorAll('#links a');
     if (enlaces.length === 0) {
+        agregarCambio('No hay enlaces para eliminar.');
         return;
     }
-    //recorre el array y va borrando elemento por elemento
     enlaces.forEach(a => a.remove());
+    agregarCambio('Todos los enlaces fueron eliminados.');
 }
 
-// Asigna a cada boton su respectivo evento al hacer click
+// Mustra los cambios realizados en la lista
+function agregarCambio(texto) {
+    const li = document.createElement('li');
+    li.textContent = texto;
+    listaCambios.appendChild(li);
+}
+
+// Asigna los eventos a los botones creados
 botonCrear.addEventListener('click', crearNodos);
 botonModificar.addEventListener('click', modificarNodos);
 botonEliminar.addEventListener('click', eliminarNodos);

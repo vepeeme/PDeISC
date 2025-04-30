@@ -31,7 +31,7 @@ function cambiarTexto() {
     //y la ultima funcionalidad que seria cambiar el color
     else if (contadorTexto % 3 === 2) {
         if (ultimoH1) {
-            ultimoH1.style.color = 'blue';
+            ultimoH1.style.color = 'purple';
         }
         boton1.textContent = 'Crear texto';
     }
