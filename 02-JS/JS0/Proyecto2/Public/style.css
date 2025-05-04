@@ -1,4 +1,3 @@
-/* Reset básico */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -20,8 +19,7 @@
     gap: 2rem;
     padding: 2rem;
   }
-  
-  /* Secciones */
+
   section {
     background: white ;
     padding: 2rem;
@@ -36,14 +34,12 @@
     transform: scale(1.01);
   }
   
-  /* Títulos */
   h1, h2 {
     text-align: center;
     margin-bottom: 1.5rem;
     color: purple;
   }
   
-  /* Formularios */
   form label {
     display: block;
     margin-bottom: 1rem;
@@ -65,7 +61,6 @@
     outline: none;
   }
   
-  /* Botón */
   button {
     display: block;
     margin: 1.5rem auto 0;
@@ -83,7 +78,6 @@
     background: darkviolet;
   }
   
-  /* Mensajes de error y éxito */
   .error {
     color: red;
     font-size: 0.85rem;
@@ -100,7 +94,6 @@
     font-size: 1rem;
   }
   
-  /* Lista de personas */
   ul {
     list-style: none;
     padding: 0;
@@ -115,7 +108,6 @@
     font-size: 1rem;
   }
   
-  /* Responsive */
   @media (max-width: 768px) {
     main.contenedor {
       flex-direction: column;
