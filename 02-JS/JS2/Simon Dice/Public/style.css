@@ -1,0 +1,100 @@
+* {
+  font-family: "Geist Mono", monospace;
+  font-optical-sizing: auto;
+  font-style: normal;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #aaa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.encabezado {
+  margin-top: 20px;
+}
+
+.titulo {
+  color: white;
+  font-weight: bold;
+}
+
+.caja {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+/* Borde exterior negro */
+.circle {
+  position: relative;
+  width: 420px; /* 400 + 10px borde cada lado */
+  height: 420px;
+  background-color: black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Parte interna donde están los 4 colores con separación */
+.inner-circle {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 50%;
+  padding: 10px; /* Simula separación interna (grosor del borde) */
+  background-color: black; /* color de los bordes internos */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Cada cuarto ocupa una mitad y se curva */
+.cuarto {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+}
+
+.rojo {
+  top: 0;
+  left: 0;
+  background-color: red;
+  border-top-left-radius: 100% 100%;
+}
+
+.verde {
+  top: 0;
+  right: 0;
+  background-color: green;
+  border-top-right-radius: 100% 100%;
+}
+
+.amarillo {
+  bottom: 0;
+  right: 0;
+  background-color: yellow;
+  border-bottom-right-radius: 100% 100%;
+}
+
+.azul {
+  bottom: 0;
+  left: 0;
+  background-color: blue;
+  border-bottom-left-radius: 100% 100%;
+}
+
+/* Círculo negro central */
+.centro {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  background-color: black;
+  border-radius: 50%;
+  z-index: 10;
+}
