@@ -1,5 +1,3 @@
-<!-- index.html -->
-<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -9,30 +7,33 @@
 </head>
 <body>
   <div class="container">
-    <h1>Juego Ta-Te-Ti</h1>
+    <h1 class="title-tateti">Ta-Te-Ti</h1> <div id="registration">
+      <form id="setupForm">
+        <label for="player1">Nombre del Jugador 1:</label>
+        <input type="text" id="player1" required />
 
-    <form id="setupForm">
-      <label for="player1">Nombre del Jugador 1:</label>
-      <input type="text" id="player1" required />
+        <label for="gameMode">Modo de Juego:</label>
+        <select id="gameMode" required>
+          <option value="pve">Jugador vs Computadora</option>
+          <option value="pvp">Jugador vs Jugador</option>
+        </select>
 
-      <label for="gameMode">Modo de Juego:</label>
-      <select id="gameMode" required>
-        <option value="pve">Jugador vs Computadora</option>
-        <option value="pvp">Jugador vs Jugador</option>
-      </select>
+        <div id="player2Container">
+          <label for="player2">Nombre del Jugador 2:</label>
+          <input type="text" id="player2" required />
+        </div>
 
-      <div id="player2Container">
-        <label for="player2">Nombre del Jugador 2:</label>
-        <input type="text" id="player2" required />
-      </div>
-
-      <button type="submit">Empezar</button>
-    </form>
+        <button type="submit">Empezar</button>
+      </form>
+    </div>
 
     <div id="game" class="hidden">
       <h2 id="turno"></h2>
       <div class="board" id="board"></div>
-      <button id="reset">Reiniciar</button>
+      <div class="game-buttons">
+        <button id="reset" class="hidden">Reiniciar</button>
+        <button id="goToRegister" class="hidden">Ir al Registro</button>
+      </div>
     </div>
   </div>
 

@@ -3,90 +3,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Simón Dice</title>
-  <style>
-    body {
-      font-family: "Geist Mono", monospace;
-      text-align: center;
-      background-color: #222;
-      color: #fff;
-    }
-
-    .contenedor {
-      display: grid;
-      grid-template-columns: repeat(2, 150px);
-      grid-template-rows: repeat(2, 150px);
-      gap: 15px;
-      justify-content: center;
-      margin-top: 30px;
-    }
-
-    h1 {
-      align-items: center;
-      font-size: 5vw;
-    }
-
-    button {
-  width: 20%;
-  padding: 1rem;
-  background-color: #d7960a;
-  border: none;
-  border-radius: 0.7rem;
-  font-size: clamp(1rem, 1.5vw, 1.3rem);
-  font-weight: bold;
-  cursor: pointer;
-  color: #000;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-    .color {
-      width: 150px;
-      height: 150px;
-      border-radius: 20px;
-      cursor: pointer;
-      opacity: 0.8;
-      transition: opacity 0.2s;
-    }
-
-    .color.activo {
-      opacity: 1;
-      box-shadow: 0 0 20px #fff;
-    }
-
-    #rojo { background-color: red; }
-    #verde { background-color: green; }
-    #azul { background-color: blue; }
-    #amarillo { background-color: yellow; }
-
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    #mensaje {
-      margin-top: 30px;
-      color: #f88;
-    }
-
-    ul {
-      text-align: left;
-      max-width: 400px;
-      margin: 10px auto;
-      padding-left: 20px;
-    }
-
-    .resaltado {
-      background-color: #f88;
-      padding: 2px 4px;
-      border-radius: 4px;
-      color: green;
-    }
-
-    #reiniciar {
-      display: none;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -100,7 +17,6 @@
   </div>
 <br><br><br>
   <button id="iniciar">Comenzar</button>
-  <button id="reiniciar">Jugar de nuevo</button>
 <br><br>
 <div id="puntaje">Puntuación: 0</div>
 
