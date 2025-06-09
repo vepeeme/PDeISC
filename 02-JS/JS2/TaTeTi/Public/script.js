@@ -1,4 +1,4 @@
-// toma referencias de los elementos del DOM
+// toma referencias de los elementos del HTML
 const setupForm = document.getElementById('setupForm');
 const gameContainer = document.getElementById('game');
 const turnoTexto = document.getElementById('turno');
@@ -7,9 +7,9 @@ const resetBtn = document.getElementById('reset');
 const goToRegisterBtn = document.getElementById('goToRegister');
 const gameModeSelect = document.getElementById('gameMode');
 const player2Container = document.getElementById('player2Container');
-const registrationDiv = document.getElementById('registration'); // Div del formulario de registro
+const registrationDiv = document.getElementById('registration');
 
-// variables de control del juego
+// vcariables de control del juego
 let currentPlayer = 'X'; 
 let boardState = Array(9).fill(null); 
 let player1Name = '';

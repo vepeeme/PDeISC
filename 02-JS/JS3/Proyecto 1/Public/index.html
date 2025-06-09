@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1 class="game-title main-title">Generador de Archivo TXT de Números</h1>
+
+    <div class="main-layout-container">
+        <div class="seccion-ingreso-numeros">
+            <h2>Ingresa Números</h2>
+            <p>Ingresa entre 10 y 20 números, uno por uno.</p>
+            <input type="number" id="input-numero" placeholder="Escribe un número">
+            <button id="btn-agregar-numero">Agregar Número</button>
+            <button id="btn-generar-txt" class="hidden">Generar Archivo TXT</button>
+
+            <h3>Números Agregados: (<span id="contador-numeros">0</span>/20)</h3>
+            <div id="lista-numeros">
+                </div>
+            <p id="mensaje-error" class="mensaje-error hidden"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
