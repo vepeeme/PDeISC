@@ -1,0 +1,116 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #e9ecef;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  main.contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  section {
+    background: white ;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 420px;
+    transition: transform 0.2s;
+  }
+  
+  section:hover {
+    transform: scale(1.01);
+  }
+  
+  h1, h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: purple;
+  }
+  
+  form label {
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  
+  input, select {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 0.3rem;
+    font-size: 1rem;
+    transition: border 0.3s;
+  }
+  
+  input:focus, select:focus {
+    border-color: purple;
+    outline: none;
+  }
+  
+  button {
+    display: block;
+    margin: 1.5rem auto 0;
+    padding: 0.75rem 2rem;
+    background: purple;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  button:hover {
+    background: darkviolet;
+  }
+  
+  .error {
+    color: red;
+    font-size: 0.85rem;
+    margin-top: 0.2rem;
+    display: block;
+  }
+  
+  .msg-exito {
+    color: #28a745;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1rem;
+    display: none;
+    font-size: 1rem;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  ul li {
+    padding: 0.7rem 1rem;
+    background: #f8f9fa;
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+    border-left: 4px solid purple;
+    font-size: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    main.contenedor {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  

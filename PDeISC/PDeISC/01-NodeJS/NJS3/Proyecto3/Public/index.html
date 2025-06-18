@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botón con múltiples eventos</title>
+    <style>
+        /* Estilo para el body */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(to right, #74ebd5, #acb6e5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+        }
+        /* Estilo para el boton */
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            border: none;
+            background-color: blue;
+            color: white;
+            border-radius: 12px;
+            box-shadow: 0px 4px 6px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+        /* Estilo para cuando se pasa el mouse por arriba del boton */
+        button:hover {
+            background-color: darkblue;
+        }
+        /* Estilo para el parrafo */
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <a href="componente1.html"><button>Pagina 1</button></a>
+    <a href="componente2.html"><button>Pagina 2</button></a>
+    <a href="componente3.html"><button>Pagina 3</button></a>
+    <a href="componente4.html"><button>Pagina 4</button></a>
+    <a href="componente5.html"><button>Pagina 5</button></a>
+
+    <button id="botonContar">¿Cuántos hijos tiene el body?</button>
+    <div id="resultado"></div>
+    <script src="script.js"></script>
+</body>
+</html>

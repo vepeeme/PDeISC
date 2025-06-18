@@ -1,0 +1,179 @@
+* {
+    font-family: "Geist Mono", monospace;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom right, lightblue, navy);
+    color: white; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.game-title.main-title {
+    font-size: 2.5em;
+    margin-bottom: 1.5em;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    line-height: 1.2;
+    text-align: center;
+}
+
+.main-layout-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.5em;
+    flex-wrap: wrap;
+    max-width: 800px;
+    width: 100%;
+}
+.seccion-subida-analisis {
+    background: rgba(0, 0, 0, 0.6); 
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.7);
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    border: 1px solid deepskyblue;
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+h2 {
+    color: lightwhite;
+    margin-top: 0;
+    margin-bottom: 1em;
+    font-size: 1.8em;
+}
+
+p {
+    font-size: 1em;
+    color: lightgray;
+    margin-bottom: 1em;
+}
+
+input[type="file"] {
+    margin-top: 1em;
+    color: white;
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.5em 0;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    background: purple;
+    color: white;
+    border: none;
+    padding: 0.6em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+    background: darkorchid;
+}
+
+button {
+    margin-top: 1.2em;
+    padding: 0.8em 1.5em;
+    background: orange;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, background 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    background: darkorange;
+    transform: scale(1.05);
+}
+
+#btn-analizar-archivo {
+    background: whitegreen;
+    color: black;
+}
+
+#btn-analizar-archivo:hover {
+    background: olive;
+}
+#resultados-analisis {
+    margin-top: 2em;
+    padding-top: 1em;
+    border-top: 1px dashed deepskyblue; 
+    text-align: left;
+}
+
+#resultados-analisis h3, #resultados-analisis h4 {
+    color: white;
+    margin-bottom: 0.8em;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+#resultados-analisis p {
+    font-size: 1em;
+    margin-bottom: 0.5em;
+    color: lightgray;
+}
+
+#resultados-analisis strong {
+    color: lightgoldenrodwhite;
+}
+
+#lista-numeros-filtrados {
+    background-color: darkslateblue;
+    border: 1px solid dodgerblue;
+    border-radius: 8px;
+    padding: 10px;
+    min-height: 50px;
+    max-height: 150px;
+    overflow-y: auto;
+    margin-top: 1em;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+#lista-numeros-filtrados span {
+    background-color: darkgreen;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    color: white;
+}
+
+#btn-descargar-filtrados {
+    background: forestgreen;
+    color: white;
+    margin-top: 1.5em;
+}
+
+#btn-descargar-filtrados:hover {
+    background: darkseagreen; 
+}
+
+.mensaje-error {
+    color: red;
+    margin-top: 1em;
+    font-size: 0.9em;
+    text-align: center;
+}

@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+/* fondo de la pagina */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #74ebd5, #acb6e5);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 40px;
+}
+
+/* diseño del boton */
+        button {
+            background-color: blue;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            margin: 10px;
+            font-size: 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+}
+
+/* cambia el color y ademas aumenta el tamaño al pasar el mouse por encima del boton */
+        button:hover {
+            background-color: rgb(1, 1, 72);
+            transform: scale(1.05);
+}
+/* estilo de ambos contenedores */
+        div {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+}
+
+/* estilo de los parrafos del contenedor */
+        #contiene h1 {
+            margin: 20px 0;
+            font-size: 32px;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+/* estilos de las imagenes del contenedor */
+        #imaginador img {
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+}
+
+/* estilo de las imagenes al pasar el mouse por encima */
+        #imaginador img:hover {
+            transform: scale(1.05);
+}
+    </style>
+</head>
+<body>
+    <button id="texto">Crear texto</button>
+    <button id="imagen">Crea imagen</button>
+    <button id="texto1">Quitar texto</button>
+    <button id="imagen1">Quitar imagen</button>
+
+    <div>
+        <div id="contiene"> </div>
+        <div id="imaginador"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

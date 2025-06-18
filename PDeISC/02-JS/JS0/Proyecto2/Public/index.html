@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="contenedor">
+    <section class="lado-form">
+      <h1>Registro de Persona</h1>
+      <form id="formPersona" novalidate>
+        <label>Nombre
+          <input type="text" id="nombre" name="nombre" required minlength="2">
+          <span class="error" id="err-nombre"></span>
+        </label>
+
+        <label>Apellido
+          <input type="text" id="apellido" name="apellido" required>
+          <span class="error" id="err-apellido"></span>
+        </label>
+
+        <label>Edad
+          <input type="number" id="edad" name="edad" required min="0">
+          <span class="error" id="err-edad"></span>
+        </label>
+
+        <label>Fecha de Nacimiento
+          <input type="date" id="nacimiento" name="nacimiento" required>
+          <span class="error" id="err-nacimiento"></span>
+        </label>
+
+        <label>Sexo
+          <select id="sexo" name="sexo" required>
+            <option value="">Seleccione</option>
+            <option>Masculino</option>
+            <option>Femenino</option>
+          </select>
+          <span class="error" id="err-sexo"></span>
+        </label>
+
+        <label>Documento
+          <input type="text" id="documento" name="documento" required pattern="\\d{6,12}">
+          <span class="error" id="err-documento"></span>
+        </label>
+
+        <label>Estado Civil
+          <select id="estado" name="estado" required>
+            <option value="">Seleccione</option>
+            <option>Soltero/a</option>
+            <option>Casado/a</option>
+            <option>Divorciado/a</option>
+            <option>Viudo/a</option>
+          </select>
+          <span class="error" id="err-estado"></span>
+        </label>
+
+        <label>Nacionalidad
+          <input type="text" id="nacionalidad" name="nacionalidad" required>
+          <span class="error" id="err-nacionalidad"></span>
+        </label>
+
+        <label>Teléfono
+          <input type="tel" id="telefono" name="telefono" required pattern="\\d{7,15}">
+          <span class="error" id="err-telefono"></span>
+        </label>
+
+        <label>Email
+          <input type="email" id="email" name="email" required>
+          <span class="error" id="err-email"></span>
+        </label>
+
+        <label>¿Tiene hijos?
+          <select id="tieneHijos" name="tieneHijos" required>
+            <option value="">Seleccione</option>
+            <option>No</option>
+            <option>Sí</option>
+          </select>
+          <span class="error" id="err-tieneHijos"></span>
+        </label>
+
+        <div id="campoCantidadHijos" style="display: none;">
+          <label>Cantidad de hijos
+            <input type="number" id="cantidadHijos" name="cantidadHijos" min="1">
+            <span class="error" id="err-cantidadHijos"></span>
+          </label>
+        </div>
+
+        <button type="submit">Guardar Persona</button>
+        <p class="msg-exito" id="msgExito">¡Registrado con éxito!</p>
+      </form>
+    </section>
+
+    <section class="lado-lista">
+      <h2>Personas Registradas</h2>
+      <ul id="listaPersonas"></ul>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

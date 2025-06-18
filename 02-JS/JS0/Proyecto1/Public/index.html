@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Formulario de Inscripción</h1>
+  </header>
+
+  <section class="formulario">
+    <form id="registroForm">
+      <label>Nombre
+        <input type="text" id="nombre" required>
+        <span class="error" id="err-nombre"></span>
+      </label>
+
+      <label>Apellido
+        <input type="text" id="apellido" required>
+        <span class="error" id="err-apellido"></span>
+      </label>
+
+      <label>Email
+        <input type="email" id="email" required>
+        <span class="error" id="err-email"></span>
+      </label>
+
+      <label>País
+        <select id="pais" required>
+          <option value="">Seleccione país</option>
+          <option>Argentina</option>
+          <option>Uruguay</option>
+          <option>Perú</option>
+          <option>Colombia</option>
+          <option>España</option>
+        </select>
+        <span class="error" id="err-pais"></span>
+      </label>
+
+      <button type="submit">Registrar</button>
+      <p class="exito" id="msgExito">¡Registrado con éxito!</p>
+    </form>
+  </section>
+
+  <section class="listado">
+    <h2>Personas Inscritas</h2>
+    <ul id="lista"></ul>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+* {
+    font-family: "Geist Mono", monospace;
+}
+body {
+    background-color: rgb(19, 19, 19);
+    margin: 0;
+    padding: 0;
+}
+.encabezado {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+.caja {
+    width: 30vw;
+    height: 30vw;
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    padding: 50px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.titulo{
+    font-size: 30px;
+    margin: 10px;
+    text-align: center;
+}
+input {
+    width: 350px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    color: black;
+    background-color: rgb(195, 195, 195);
+}
+select {
+    width: 350px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    color: black;
+    background-color: rgb(195, 195, 195);
+}
+.botoncito {
+    background-color: purple;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    width: 350px;
+    margin: 0 auto;
+}
+@media screen and (max-width: 768px) {
+    .caja {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 90vw;
+        height: auto;
+        padding: 20px;
+    }
+
+    input, .botoncito {
+        width: 100%;
+        max-width: none;
+    }
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Proyecto Nodos Express</title>
+    <style>
+        /* Estilo del body */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            padding: 30px;
+            margin: 0;
+        }
+        /* Estilo dek titulo */
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        /* Estilo de los div que contine los botones y de los enlaces */
+        div {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        /* Estilo de los botones */
+        button {
+            background-color: blue;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        /* Estilo de los botones al pasar el mouse por encima */
+        button:hover {
+            background-color: darkblue;
+        }
+        /* Estilo del div que contiene los enlaces */
+        #links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        /* Estilo de los enlaces que estan dentro del div #Links */
+        #links a {
+            text-decoration: none;
+            background-color: #ffffff;
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: #333;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        /* Estilo de los mismos enlaces al pasar el mouse por encima */
+        #links a:hover {
+            background-color: #e0e0e0;
+            color: #000;
+        }
+        /* Estilo para quitar los puntos y márgenes de la lista de cambios */
+#listaCambios {
+    list-style-type: none;  /* Quita los bullets/puntos */
+    padding: 0;              /* Elimina el padding izquierdo */
+    margin: 0;               /* Elimina el margen por defecto */
+}
+
+    </style>    
+</head>
+<body>
+    <h1>Crear y Modificar Enlaces Dinámicamente</h1>
+    <div >
+        <button id="crearNodos">Crear enlaces</button>
+        <button id="modificarNodos">Modificar enlaces</button>
+        <button id="eliminarNodos">Eliminar enlaces</button>
+    </div>
+    <div id="links"></div>
+    <div id="resultado">
+        <h3>Cambios realizados:</h3>
+        <ul id="listaCambios"></ul>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

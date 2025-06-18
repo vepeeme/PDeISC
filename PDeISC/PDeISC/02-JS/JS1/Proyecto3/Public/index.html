@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1><code>unshift()</code> en Formularios</h1>
+
+    <section>
+      <h2>Colores</h2>
+      <form id="form-colores">
+        <button type="submit">Agregar 3 Colores</button>
+      </form>
+      <ul id="lista-colores"></ul>
+    </section>
+
+    <section>
+      <h2>Tareas</h2>
+      <form id="form-tareas">
+        <input type="text" id="input-tarea" placeholder="Nueva tarea urgente" required>
+        <button type="submit">Agregar Tarea al Inicio</button>
+      </form>
+      <ul id="lista-tareas"></ul>
+    </section>
+
+    <section>
+      <h2>Usuarios Conectados</h2>
+      <form id="form-usuarios">
+        <input type="text" id="input-usuario" placeholder="Nombre de usuario" required>
+        <button type="submit">Conectar Usuario al Inicio</button>
+      </form>
+      <ul id="lista-usuarios"></ul>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

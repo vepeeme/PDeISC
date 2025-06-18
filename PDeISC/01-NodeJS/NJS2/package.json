@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "axios": "^1.8.4",
+    "chalk": "^5.4.1",
+    "upper-case": "^2.0.2"
+  }
+}

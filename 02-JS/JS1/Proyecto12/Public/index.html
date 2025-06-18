@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Ejercicios con el método reduce()</h1>
+  <div id="suma">
+    <h2>Suma de todos los elementos de un array</h2>
+    <form id="formSuma">
+      <label for="sumaArray">Ingresa los números (separados por coma):</label>
+      <input type="text" id="sumaArray" placeholder="Ejemplo: 1,2,3,4,5">
+      <button type="submit">Calcular</button>
+    </form>
+    <p>Resultado: <span id="sumaResultado"></span></p>
+  </div>
+  <div id="multiplicacion">
+    <h2>Multiplicación de todos los elementos de un array</h2>
+    <form id="formMultiplicacion">
+      <label for="multiplicacionArray">Ingresa los números (separados por coma):</label>
+      <input type="text" id="multiplicacionArray" placeholder="Ejemplo: 1,2,3,4">
+      <button type="submit">Calcular</button>
+    </form>
+    <p>Resultado: <span id="multiplicacionResultado"></span></p>
+  </div>
+  <div id="totalPrecio">
+    <h2>Total de precios (array de objetos)</h2>
+    <form id="formTotalPrecio">
+      <label for="productosArray">Ingresa los precios (separados por coma):</label>
+      <input type="text" id="productosArray" placeholder="Ejemplo: 100,200,50,75">
+      <button type="submit">Calcular</button>
+    </form>
+    <p>Resultado: <span id="totalPrecioResultado"></span></p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

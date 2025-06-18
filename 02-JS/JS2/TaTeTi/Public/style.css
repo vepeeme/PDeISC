@@ -1,0 +1,132 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #2c3e50, #34495e);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #ecf0f1;
+}
+
+.container {
+  background: #3b506b;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.title-tateti {
+  margin-bottom: 1.5rem;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #61dafb;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+  letter-spacing: 2px;
+}
+
+input, select, button {
+  display: block;
+  width: 100%;
+  padding: 0.6rem;
+  margin: 0.75rem 0;
+  border: 1px solid #4a627d;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  background-color: #4a627d;
+  color: #ecf0f1;
+  box-sizing: border-box; 
+}
+
+input:focus, select:focus, button:focus {
+  border-color: #61dafb;
+  outline: none;
+}
+
+button {
+  background-color: #61dafb;
+  color: #2c3e50;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #4dc2ed;
+}
+
+#player2Container {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 8px;
+  justify-content: center;
+  margin: 1.5rem auto;
+}
+
+.cell {
+  background: #536c88;
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 10px;
+  user-select: none;
+  transition: background 0.2s, box-shadow 0.2s;
+  color: #ecf0f1;
+}
+
+.cell:hover {
+  background: #627b99;
+  box-shadow: 0 0 10px rgba(97, 218, 251, 0.5);
+}
+
+.cell.highlight {
+  background-color: #405771;
+  box-shadow: 0 0 15px rgba(97, 218, 251, 0.8);
+  border: 2px solid #61dafb;
+}
+
+h1 {
+  margin-bottom: 1rem;
+  color: #ecf0f1;
+}
+
+#turno {
+  margin: 1rem 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #95a5a6;
+}
+
+.game-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+}
+
+.game-buttons button {
+  width: 48%;
+}
+
+label {
+  color: #ecf0f1;
+  margin-top: 0.5rem;
+  text-align: left;
+  width: 100%; 
+  display: block; 
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Objetos HTML</title>
+    <style>
+        /* Estilo que afectan a todas las etiquetas */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilo del body  */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        /* Estilo del div con los botones  */
+        .caja {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        /* Estilo del titulo  */
+        h1 {
+            font-size: 28px;
+            color: blue;
+            margin-bottom: 20px;
+        }
+        /* Estilo del boton */
+        button {
+            background-color: blue;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        /* Estilo del boton al pasar el mouse por encima */
+        button:hover {
+            background-color: darkblue;
+        }
+        /* Estilo del div que contine los elementos que agregamos */
+        .cajita {
+            padding: 20px;
+            background-color: #fafafa;
+            border: 1px dashed #ccc;
+            border-radius: 8px;
+            min-height: 150px;
+            margin-top: 20px;
+        }
+        /* Estilo de los parrafos  */
+        p {
+            color: #555;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        /* Estilo de as listas  */
+        ul {
+            text-align: left;
+            list-style: square inside;
+            margin: 0 auto;
+            padding: 0;
+        }
+        /* Estilo de los elementos de las listas  */
+        ul li {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+        /* Estilo de las imagenes  */
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Agregar Objetos HTML con InnerHTML</h1>
+
+    <div class="caja">
+        <button onclick="agregarParrafo()">Agregar Párrafo</button>
+        <button onclick="agregarTitulo()">Agregar Título</button>
+        <button onclick="agregarImagen()">Agregar Imagen</button>
+        <button onclick="agregarLista()">Agregar Lista</button>
+        <button onclick="agregarCaja()">Agregar Caja Div</button>
+        <button onclick="limpiarContenedor()">Limpiar Todo</button>
+    </div>
+
+    <div id="contenedor" class="cajita"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <h1>Registro de Animales</h1>
+
+  <form id="formulario">
+    <input id="IdAnimal"     type="number" placeholder="ID Animal"          required/>
+    <input id="nombre"       type="text"   placeholder="Nombre"             required/>
+    <input id="JaulaNumero"  type="number" placeholder="Nº Jaula"           required/>
+    <input id="IdTypeAnimal" type="number" placeholder="Tipo (1=Felino…)"    required/>
+    <input id="peso"         type="number" step="0.1" placeholder="Peso (kg)" required/>
+    <button type="submit">Añadir Animal</button>
+  </form>
+
+  <button id="btnMostrar">Mostrar Datos</button>
+
+  <script src="script.js"></script>
+</body>
+</html>

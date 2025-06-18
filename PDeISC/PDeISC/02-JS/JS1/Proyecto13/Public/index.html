@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Ejercicios con el método sort()</h1>
+  <div id="ordenarNumeros">
+    <h2>Ordena un array de números de menor a mayor</h2>
+    <form id="formOrdenarNumeros">
+      <label for="numerosArray">Ingresa los números (separados por coma):</label>
+      <input type="text" id="numerosArray" placeholder="Ejemplo: 5,3,8,1,4">
+      <button type="submit">Ordenar Números</button>
+    </form>
+    <p>Resultado: <span id="numerosResultado"></span></p>
+  </div>
+  <div id="ordenarPalabras">
+    <h2>Ordena un array de palabras alfabéticamente</h2>
+    <form id="formOrdenarPalabras">
+      <label for="palabrasArray">Ingresa las palabras (separadas por coma):</label>
+      <input type="text" id="palabrasArray" placeholder="Ejemplo: manzana,pera,banana,uva">
+      <button type="submit">Ordenar Palabras</button>
+    </form>
+    <p>Resultado: <span id="palabrasResultado"></span></p>
+  </div>
+  <div id="ordenarObjetos">
+    <h2>Ordena un array de objetos por edad</h2>
+    <form id="formOrdenarObjetos">
+      <label for="objetosArray">Ingresa los objetos con {nombre, edad} (separados por coma):</label>
+      <input type="text" id="objetosArray" placeholder="Ejemplo: Juan,25;Ana,30;Pedro,22">
+      <button type="submit">Ordenar por Edad</button>
+    </form>
+    <p>Resultado: <span id="objetosResultado"></span></p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
