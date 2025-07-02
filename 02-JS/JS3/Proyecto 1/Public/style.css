@@ -1,0 +1,153 @@
+* {
+    font-family: "Geist Mono", monospace;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom right, lightblue, navy);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.game-title.main-title {
+    font-size: 2.5em;
+    margin-bottom: 1.5em;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    line-height: 1.2;
+    text-align: center;
+}
+
+.main-layout-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.5em;
+    flex-wrap: wrap;
+    max-width: 800px;
+    width: 100%;
+}
+
+.seccion-ingreso-numeros {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 1.5em;
+    border-radius: 10px; 
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.7);
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    border: 1px solid deepskyblue;
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+h2 {
+    color: lightwhite; 
+    margin-top: 0;
+    margin-bottom: 1em;
+    font-size: 1.8em;
+}
+
+p {
+    font-size: 1em;
+    color: lightgray;
+    margin-bottom: 1em;
+}
+
+input[type="number"] {
+    width: calc(100% - 20px);
+    margin: 0.5em 0;
+    padding: 0.6em 10px;
+    border: 2px solid royalblue;
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: darkblue;
+    color: white;
+    outline: none;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+input[type="number"]::placeholder {
+    color: silver; 
+}
+
+input[type="number"]:focus {
+    border-color: limegreen;
+}
+
+button {
+    margin-top: 1.2em;
+    padding: 0.8em 1.5em;
+    background: orange;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, background 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    background: darkorange; 
+    transform: scale(1.05);
+}
+
+#btn-generar-txt {
+    background: green;
+    color: white;
+}
+
+#btn-generar-txt:hover {
+    background: darkgreen;
+}
+
+h3 {
+    color: whitegreen;
+    margin-top: 1.5em;
+    font-size: 1.2em;
+}
+
+#lista-numeros {
+    background-color: darkslateblue;
+    border: 1px solid dodgerblue;
+    border-radius: 8px;
+    padding: 10px;
+    min-height: 80px;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 1em;
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+#lista-numeros span {
+    background-color: purple;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    color: white;
+}
+
+.mensaje-error {
+    color: red;
+    margin-top: 1em;
+    font-size: 0.9em;
+    text-align: center;
+}

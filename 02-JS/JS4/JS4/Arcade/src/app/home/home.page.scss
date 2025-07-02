@@ -1,0 +1,67 @@
+ion-header {
+  ion-toolbar {
+    --background: #2c3e50;
+    --color: #ecf0f1;
+    text-align: center;
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+  }
+
+  ion-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 4vw;
+    color: #f1c40f;
+    text-shadow: 0.8vw 0.8vw 0vw rgba(0,0,0,0.5);
+    letter-spacing: 0.5vw;
+  }
+}
+
+ion-content {
+  --background: #34495e;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  height: calc(100vh - var(--ion-safe-area-top) - var(--ion-safe-area-bottom));
+  overflow: hidden;
+}
+
+.menu-buttons-container {
+  background: none;
+  width: 70%;
+  max-width: 50vw;
+  margin: 0 auto;
+  height: 50%; /* Altura del contenedor de botones (40% del ion-content) */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly; /* Distribuye el espacio sobrante equitativamente */
+  padding-bottom: 0;
+}
+
+ion-button {
+  --background: #1abc9c;
+  --color: #ffffff;
+  --border-radius: 2.5vw;
+  transition: transform 0.2s ease-in-out;
+  --ripple-color: rgba(255, 255, 255, 0.4);
+
+  // **** CAMBIO CLAVE AQUI: ELIMINAMOS flex: 1; ****
+  // flex: 1;
+
+  margin-bottom: 1vh; /* Margen vertical entre botones */
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 3.5vw;
+
+  // **** CAMBIO CLAVE AQUI: AÑADIMOS una altura mínima para controlar el tamaño ****
+  min-height: 8vh; /* Por ejemplo, una altura mínima del 8% del alto del viewport */
+  height: auto; /* Permite que la altura se ajuste al contenido si es necesario */
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:hover {
+    transform: translateY(-0.8vw);
+  }
+}

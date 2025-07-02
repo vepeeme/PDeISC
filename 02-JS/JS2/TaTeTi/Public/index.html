@@ -1,0 +1,43 @@
+
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ta-Te-Ti</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title-tateti">Ta-Te-Ti</h1> <div id="registration">
+      <form id="setupForm">
+        <label for="player1">Nombre del Jugador 1:</label>
+        <input type="text" id="player1" required />
+
+        <label for="gameMode">Modo de Juego:</label>
+        <select id="gameMode" required>
+          <option value="pve">Jugador vs Computadora</option>
+          <option value="pvp">Jugador vs Jugador</option>
+        </select>
+
+        <div id="player2Container">
+          <label for="player2">Nombre del Jugador 2:</label>
+          <input type="text" id="player2" required />
+        </div>
+
+        <button type="submit">Empezar</button>
+      </form>
+    </div>
+
+    <div id="game" class="hidden">
+      <h2 id="turno"></h2>
+      <div class="board" id="board"></div>
+      <div class="game-buttons">
+        <button id="reset" class="hidden">Reiniciar</button>
+        <button id="goToRegister" class="hidden">Ir al Registro</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

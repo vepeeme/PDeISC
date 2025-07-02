@@ -1,0 +1,348 @@
+/* Importar la fuente Geist Mono */
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono&display=swap');
+
+/* --- Reseteo Global --- */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh; /* Mantener la altura del viewport, pero permitir scroll si el contenido lo requiere */
+  /* overflow: hidden; /* ¡Eliminado para permitir el scroll! */
+  /* overscroll-behavior: none; /* ¡Eliminado para permitir el scroll! */
+}
+
+/* --- Estilos para el contenedor de Ionic --- */
+ion-content {
+  /* Fondo principal */
+  --background: linear-gradient(to right bottom, #340e4f, #0d0426);
+  font-family: "Geist Mono", monospace;
+  color: #f0f0f0;
+
+  /* Desactivar el scroll nativo de Ionic (si no se necesita, puedes quitarlo) */
+  /* --overflow: hidden; /* Puedes quitar esta línea si prefieres que Ionic gestione el scroll */
+
+  /* Asegura que ion-content sea un contenedor flex que ocupe el espacio preciso */
+  display: flex !important;
+  justify-content: center !important; /* Centra horizontalmente el contenido */
+  align-items: center !important;   /* Centra verticalmente el contenido */
+  
+  /* Calcular la altura restante del viewport, restando la barra superior de Ionic */
+  /* Ajusta '56px' si tu ion-toolbar tiene una altura diferente */
+  min-height: calc(100vh - var(--ion-safe-area-top, 0px) - var(--ion-safe-area-bottom, 0px) - var(--ion-toolbar-height, 56px)) !important;
+  width: 100vw !important; /* Ocupa todo el ancho del viewport */
+  
+  /* Permite el scroll si el contenido se desborda */
+  overflow: auto !important; /* ¡Cambiado de hidden a auto! */
+  overscroll-behavior: auto !important; /* ¡Cambiado de none a auto! */
+}
+
+/* Estilos para el scroll-content interno de Ionic (si existe) */
+ion-content .scroll-content {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-direction: column !important; /* Asegura que los hijos se apilen verticalmente */
+  width: 100% !important;
+  min-height: 100% !important; /* Cambiado a min-height para permitir que el contenido se estire */
+  
+  /* Permite el scroll si el contenido se desborda */
+  overflow: auto !important; /* ¡Cambiado de hidden a auto! */
+  overscroll-behavior: auto !important; /* ¡Cambiado de none a auto! */
+}
+
+/* --- Contenedor principal de todo el contenido del juego --- */
+.body-container {
+  margin: 0;
+  padding: 20px; /* Padding interno para que el contenido no se pegue a los bordes */
+  color: #f0f0f0;
+  
+  /* Usa flexbox para centrar y organizar el título y el main-layout-container/game */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra verticalmente el contenido */
+  align-items: center; /* Centra horizontalmente el contenido */
+  
+  /* Ocupa el 100% del espacio disponible de su padre (ion-content) */
+  width: 100%;
+  min-height: 100%; /* Importantísimo para que el flexbox funcione correctamente y permita crecer */
+  box-sizing: border-box; /* Incluye padding en el width/height */
+  
+  /* Permite que el scroll ocurra si el contenido interno de .body-container se desborda */
+  overflow: auto; 
+}
+
+/* --- Estilos para el título principal --- */
+.game-title.main-title {
+  font-size: 2.8rem;
+  margin-bottom: 2rem;
+  color: #ffd700;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+  line-height: 1.2;
+  text-align: center;
+  flex-shrink: 0; /* Evita que el título se encoja si el espacio es limitado */
+}
+
+/* --- Contenedor principal para el login/juego y la imagen --- */
+.main-layout-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente los elementos hijos */
+  align-items: flex-start; /* Alinea los elementos al inicio verticalmente */
+  gap: 2rem;
+  flex-wrap: wrap; /* Permite que los elementos salten de línea en pantallas pequeñas */
+  max-width: 1000px;
+  width: 100%; /* Ocupa todo el ancho disponible */
+  flex-grow: 1; /* Permite que este contenedor crezca y ocupe el espacio disponible */
+  /* overflow: hidden; /* Puedes quitar esto si no necesitas ocultar el desbordamiento interno */
+  box-sizing: border-box;
+}
+
+/* --- Contenedor del formulario de login --- */
+.login {
+  background: #1e1e1e;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.9);
+  width: 90%; /* Ancho flexible */
+  max-width: 400px; /* Máximo ancho */
+  text-align: center;
+  border: 1px solid #4a148c;
+  flex-shrink: 0; /* Evita que se encoja más de lo necesario */
+  box-sizing: border-box;
+}
+
+/* --- Contenedor de la imagen del tutorial --- */
+.tutorial-image-container {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0; /* Evita que se encoja */
+  max-width: 400px;
+  box-sizing: border-box;
+  margin-top: 0; /* Asegura que no tenga margen superior inesperado */
+}
+
+.tutorial-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --- Estilos internos del formulario de login --- */
+.login h2 {
+  color: #e0e0e0;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.login input {
+  width: calc(100% - 20px); /* Ancho del input menos el padding horizontal */
+  margin: 0.6rem 0;
+  padding: 0.7rem 10px;
+  border: 1px solid #6a1b9a;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  background-color: #2a0a3d;
+  color: #f0f0f0;
+  outline: none;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.login input::placeholder {
+  color: #a0a0a0;
+}
+
+.login input:focus {
+  border-color: #ffd700;
+}
+
+/* --- Estilos de los botones generales --- */
+button {
+  margin-top: 1.2rem;
+  padding: 0.8rem 1.5rem;
+  background: #ffd700;
+  color: #1e1e1e;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, background 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+button:hover {
+  background: #ffec8b;
+  transform: scale(1.03);
+}
+
+/* --- Estilos de las instrucciones de teclas --- */
+.instructions {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed #4a148c;
+  text-align: center;
+}
+
+.instructions h3 {
+  color: #ffd700;
+  margin-bottom: 0.8rem;
+  font-size: 1.2rem;
+}
+
+.key-groups-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.key-group {
+  flex: 1;
+  min-width: 130px;
+  margin-bottom: 0.5rem;
+  padding: 0;
+  text-align: left;
+}
+
+.key-group h4 {
+  color: #e0e0e0;
+  margin-bottom: 0.3rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.key-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.key-group li {
+  margin: 0.2rem 0;
+  font-size: 0.85rem;
+  color: #b0b0b0;
+  text-align: center;
+}
+
+.key-group li strong {
+  color: #ffd700;
+}
+
+label {
+  display: block;
+  text-align: left;
+  margin-bottom: 0.2rem;
+  font-size: 0.9rem;
+  color: #e0e0e0;
+}
+
+/* --- Estilos de la pantalla de juego --- */
+.game {
+  max-width: 500px;
+  margin-top: 2rem; /* Mantén este margen para separar del título */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra horizontalmente los elementos */
+  gap: 1.5rem; /* Espacio entre los elementos */
+  width: 100%; /* Asegura que ocupe todo el ancho disponible */
+  flex-grow: 1; /* Permite que el contenedor del juego crezca */
+  box-sizing: border-box;
+}
+
+.scoreboard {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #e0e0e0;
+  width: 100%;
+}
+
+#change-mode {
+  background: #6a1b9a;
+  color: #f0f0f0;
+  margin-top: 0.8rem;
+  padding: 0.7rem 1.2rem;
+  font-size: 0.95rem;
+}
+
+#change-mode:hover {
+  background: #8839b9;
+}
+
+#timer {
+  font-size: 3.5rem;
+  margin: 1rem 0;
+  color: #ffd700;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.prompt {
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+  color: #a0a0a0;
+}
+
+#result {
+  margin-top: 1.2rem;
+  font-size: 1.2rem;
+  background-color: #2a0a3d;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #6a1b9a;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#result div {
+  margin: 0.4rem 0;
+}
+
+#result strong {
+  color: #ffd700;
+}
+
+#result h3 {
+  margin-top: 0.8rem;
+  color: #ffec8b;
+  font-size: 1.5rem;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+#restart-round {
+  display: block;
+  margin: 1.2rem auto 0 auto;
+  background: #4CAF50;
+  color: white;
+}
+
+#restart-round:hover {
+  background: #66BB6A;
+}
+
+/* --- Media Queries (ajustes para pantallas más grandes) --- */
+@media (min-width: 900px) {
+  .main-layout-container {
+    flex-direction: row; /* En pantallas grandes, alinea en fila */
+    justify-content: center;
+    align-items: flex-start; /* Alinea al inicio verticalmente */
+  }
+
+  .login {
+    margin-right: 1rem;
+  }
+
+  .tutorial-image-container {
+    margin-left: 1rem;
+  }
+}

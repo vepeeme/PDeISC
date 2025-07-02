@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Simón Dice</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="simon-game">
+    <h1>Simón Dice</h1>
+
+    <div class="contenedor">
+      <div id="verde" class="color"></div>
+      <div id="rojo" class="color"></div>
+      <div id="amarillo" class="color"></div>
+      <div id="azul" class="color"></div>
+    </div>
+
+    <div class="game-controls">
+      <ion-button id="iniciar" expand="block" shape="round" color="success">
+        Comenzar
+      </ion-button>
+
+      <div id="puntaje" class="puntaje">Puntuación: 0</div>
+      <div id="mensaje" class="mensaje"></div>
+    </div>
+  </div>
+</ion-content>

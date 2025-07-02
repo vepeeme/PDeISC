@@ -1,0 +1,113 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+  }
+  
+  h1 {
+    color: purple;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+  }
+  
+  div {
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+  }
+  
+  h2 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  label {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  input {
+    padding: 10px;
+    width: 100%;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: border-color 0.3s ease;
+  }
+  
+  input:focus {
+    border-color: purple;
+    outline: none;
+  }
+  
+  button {
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    background-color: purple;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 200px;
+  }
+  
+  button:hover {
+    background-color: darkviolet;
+  }
+  
+  button:active {
+    background-color: darkmagenta;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: purple;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  input, button {
+    margin-bottom: 15px;
+  }
+  
+  @media (max-width: 600px) {
+    body {
+      padding: 10px;
+    }
+  
+    h1 {
+      font-size: 2rem;
+    }
+  
+    div {
+      padding: 15px;
+      width: 100%;
+    }
+  
+    input, button {
+      width: 100%;
+    }
+  }
+  

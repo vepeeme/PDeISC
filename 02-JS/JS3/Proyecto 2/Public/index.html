@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1 class="game-title main-title">Analizador de Archivo TXT de Números</h1>
+
+    <div class="main-layout-container">
+        <div class="seccion-subida-analisis">
+            <h2>Cargar y Analizar Archivo</h2>
+            <p>Sube un archivo .txt con números (uno por línea) para analizarlos.</p>
+            <input type="file" id="input-archivo" accept=".txt">
+            <button id="btn-analizar-archivo">Analizar Archivo</button>
+
+            <div id="resultados-analisis" class="hidden">
+                <h3>Resultados del Análisis:</h3>
+                <p>Números totales procesados: <strong id="total-numeros-procesados">0</strong></p>
+                <p>Números útiles encontrados: <strong id="numeros-utiles-contador">0</strong> (<span id="porcentaje-utiles">0%</span>)</p>
+                <p>Números no útiles: <strong id="numeros-no-utiles-contador">0</strong> (<span id="porcentaje-no-utiles">0%</span>)</p>
+
+                <h4>Números que cumplen el criterio (ordenados):</h4>
+                <div id="lista-numeros-filtrados">
+                    </div>
+                <button id="btn-descargar-filtrados">Descargar Números Filtrados TXT</button>
+            </div>
+            <p id="mensaje-analisis-error" class="mensaje-error hidden"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Ejercicio <code>splice()</code></h1>
+    <section>
+      <h2>Eliminar Letras</h2>
+      <form id="form-eliminar">
+        <button type="submit">msg-eliminar</button>
+      </form>
+      <ul id="lista-letras"></ul>
+      <p id="msg-eliminar"></p>
+    </section>
+    <section>
+      <h2>Insertar Nombre</h2>
+      <form id="form-insertar">
+        <input type="text" id="input-nombre" placeholder="Nuevo nombre" required>
+        <button type="submit">Insertar</button>
+      </form>
+      <ul id="lista-nombres"></ul>
+      <p id="msg-insertar"></p>
+    </section>
+    <section>
+      <h2>Reemplazar Elementos</h2>
+      <form id="form-reemplazar">
+        <input type="text" id="input-r1" placeholder="Reemplazo 1" required>
+        <input type="text" id="input-r2" placeholder="Reemplazo 2" required>
+        <button type="submit">Reemplazar</button>
+      </form>
+      <ul id="lista-reemplazo"></ul>
+      <p id="msg-reemplazar"></p>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

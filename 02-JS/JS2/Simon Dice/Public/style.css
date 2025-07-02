@@ -1,0 +1,82 @@
+body {
+  font-family: "Geist Mono", monospace;
+  text-align: center;
+  background-color: #222;
+  color: #fff;
+}
+
+.contenedor {
+  display: grid;
+  grid-template-columns: repeat(2, 7.8vw);
+  grid-template-rows: repeat(2, 7.8vw);    
+  gap: 0.8vw;                              
+  justify-content: center;
+  margin-top: 1.6vw;                      
+}
+
+h1 {
+  align-items: center;
+  font-size: 5vw;
+}
+
+button {
+  width: 20%;
+  padding: 1rem;
+  background-color: #d7960a;
+  border: none;
+  border-radius: 0.7rem;
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  font-weight: bold;
+  cursor: pointer;
+  color: #000;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.color {
+  width: 100%;                           
+  height: 100%;
+  border-radius: 1vw;                      
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.color.activo {
+  opacity: 1;
+  box-shadow: 0 0 1vw #fff;               
+}
+
+#rojo { background-color: red; }
+#verde { background-color: green; }
+#azul { background-color: blue; }
+#amarillo { background-color: yellow; }
+
+button {
+  margin-top: 1vw;                        
+  padding: 0.5vw 1vw;                    
+  font-size: 0.8vw;                       
+  cursor: pointer;
+}
+
+#mensaje {
+  margin-top: 1.6vw;                       
+  color: #f88;
+}
+
+ul {
+  text-align: left;
+  max-width: 20.8vw;                       
+  margin: 0.5vw auto;                     
+  padding-left: 1vw;                       
+}
+
+.resaltado {
+  background-color: red;
+  padding: 0.1vw 0.2vw;                 
+  border-radius: 0.2vw;                   
+  color: white;
+}
+
+#reiniciar {
+  display: none;
+}

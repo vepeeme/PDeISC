@@ -1,0 +1,210 @@
+/* Importar la fuente Geist Mono */
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;700&display=swap');
+
+/* --- Reseteo y Base para evitar el scroll en la pantalla --- */
+html, body {
+  /* Reseteo básico para eliminar cualquier margen o padding predeterminado */
+  margin: 0;
+  padding: 0;
+  /* Asegura que el html y el body ocupen exactamente el 100% del viewport */
+  width: 100vw;
+  height: 100vh;
+  /* La clave para evitar el scroll - oculta cualquier contenido que se desborde */
+  overflow: hidden;
+  /* Impide el overscroll en dispositivos móviles (efecto rebote) */
+  overscroll-behavior: none;
+}
+
+/* Override de estilos globales para esta página */
+.simon-content {
+  --background: #222;
+  --color: #fff;
+  font-family: "Geist Mono", monospace;
+  
+  /* Centrar todo el contenido principal */
+  display: flex;
+  flex-direction: column; /* Cambiado a column para mejor control vertical */
+  align-items: center;
+  justify-content: center;
+  
+  /* Asegura que ocupe todo el espacio disponible */
+  width: 100vw;
+  height: 100vh; /* Usa height en lugar de min-height para un control estricto */
+  
+  /* Evita que el contenido interno de .simon-content cause scroll si se desborda */
+  overflow: hidden; 
+}
+
+.simon-game {
+  text-align: center;
+  /* Asegura que ocupe todo el espacio disponible del padre */
+  width: 100%; /* Usar 100% del padre (.simon-content) */
+  height: 100%; /* Usar 100% del padre (.simon-content) */
+  
+  /* Los márgenes de los elementos hijos (h1, contenedor, etc.) pueden sumar y desbordar.
+     Usamos flexbox aquí para distribuir el espacio de forma controlada. */
+  display: flex;
+  flex-direction: column; /* Los elementos se apilan verticalmente */
+  align-items: center;
+  justify-content: center; /* Centra los elementos verticalmente */
+  
+  background-color: #222;
+  color: #fff;
+  
+  /* Asegura que .simon-game no se desborde si su contenido es demasiado grande */
+  overflow: hidden;
+  
+  /* Ajuste de padding/margin para evitar que los elementos internos empujen fuera */
+  padding: 1vw; /* Un poco de padding general si es necesario, pero cauteloso */
+  box-sizing: border-box; /* Incluye padding y border en el width/height */
+}
+
+h1 {
+  font-size: 5vw;
+  margin: 0; /* Eliminar márgenes para evitar desbordamientos */
+  /* margin-bottom: 1.6vw; -- Ya no necesario si flexbox distribuye */
+  color: #fff;
+  font-family: "Geist Mono", monospace;
+  /* Si el título es muy largo, podría desbordarse. Ajusta font-size o usa text-overflow */
+  white-space: nowrap; /* Evita que el texto salte de línea */
+  overflow: hidden; /* Oculta el texto si se desborda */
+  text-overflow: ellipsis; /* Añade puntos suspensivos si se oculta */
+}
+
+.contenedor {
+  display: grid;
+  grid-template-columns: repeat(2, 7.8vw);
+  grid-template-rows: repeat(2, 7.8vw);    
+  gap: 0.8vw;                               
+  justify-content: center;
+  /* Eliminar o reducir márgenes que puedan causar desbordamiento */
+  margin: 1.6vw 0; /* Un margen vertical, pero no empuja al total */
+  
+  /* Asegura que el contenedor no se desborde si sus hijos son muy grandes */
+  overflow: hidden;
+}
+
+.color {
+  width: 100%;                                 
+  height: 100%;
+  border-radius: 1vw;                          
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+  border: none;
+  
+  &.activo {
+    opacity: 1;
+    box-shadow: 0 0 1vw #fff;                  
+  }
+}
+
+#rojo { 
+  background-color: red; 
+}
+
+#verde { 
+  background-color: green; 
+}
+
+#azul { 
+  background-color: blue; 
+}
+
+#amarillo { 
+  background-color: yellow; 
+}
+
+/* Botón personalizado (no ion-button) */
+button {
+  width: 20%;
+  padding: 1rem;
+  background-color: #d7960a;
+  border: none;
+  border-radius: 0.7rem;
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  font-weight: bold;
+  cursor: pointer;
+  color: #000;
+  transition: background-color 0.3s, transform 0.2s;
+  margin-top: 1vw;
+  font-family: "Geist Mono", monospace;
+  
+  &:hover {
+    background-color: #e6a91a;
+    transform: translateY(-2px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+#puntaje {
+  margin-top: 1.6vw;
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  font-weight: bold;
+  color: #fff;
+  font-family: "Geist Mono", monospace;
+}
+
+#mensaje {
+  margin-top: 1.6vw;
+  color: #f88;
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  font-family: "Geist Mono", monospace;
+  min-height: 1.5rem; /* Asegura un espacio para el mensaje */
+  flex-shrink: 0; /* Evita que este elemento se encoja si el espacio es limitado */
+}
+
+/* Override de estilos de Ionic para mantener el tema oscuro */
+ion-header {
+  ion-toolbar {
+    --background: #222;
+    --color: #fff;
+  }
+  
+  ion-title {
+    color: #fff;
+    font-family: "Geist Mono", monospace;
+  }
+  
+  ion-back-button {
+    --color: #fff;
+  }
+}
+
+/* --- Responsivo - ajustes para pantallas más pequeñas --- */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 8vw;
+  }
+  
+  .contenedor {
+    grid-template-columns: repeat(2, 12vw);
+    grid-template-rows: repeat(2, 12vw);
+    gap: 1.2vw;
+  }
+  
+  button {
+    width: 40%;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 10vw;
+  }
+  
+  .contenedor {
+    grid-template-columns: repeat(2, 15vw);
+    grid-template-rows: repeat(2, 15vw);
+    gap: 1.5vw;
+  }
+  
+  button {
+    width: 50%;
+    padding: 0.8rem;
+  }
+}

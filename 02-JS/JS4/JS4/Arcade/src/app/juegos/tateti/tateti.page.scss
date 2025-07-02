@@ -1,0 +1,206 @@
+// ESTILOS CSS
+ion-content {
+  --background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: 1rem;
+}
+
+.title-tateti {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #e8f4f8;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.registration-section {
+  width: 100%;
+  max-width: 400px;
+}
+
+.registration-card {
+  --background: rgba(30, 60, 114, 0.95);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(232, 244, 248, 0.2);
+  
+  ion-card-content {
+    padding: 1.5rem;
+  }
+}
+
+ion-item {
+  --background: transparent;
+  --border-color: #4a7bc8;
+  margin-bottom: 1rem;
+  
+  ion-label {
+    font-weight: 600;
+    color: #e8f4f8;
+    margin-bottom: 0.5rem;
+  }
+  
+  ion-input, ion-select {
+    --color: #e8f4f8;
+    --placeholder-color: #a8c8e1;
+  }
+}
+
+.start-button {
+  margin-top: 1.5rem;
+  --background: linear-gradient(45deg, #0f2557, #1e3c72);
+  --color: #e8f4f8;
+  font-weight: bold;
+  height: 48px;
+  border: 1px solid #4a7bc8;
+}
+
+.game-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.turno-text {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #e8f4f8;
+  text-align: center;
+  margin: 1rem 0 2rem 0;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: rgba(15, 37, 87, 0.3);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(74, 123, 200, 0.3);
+}
+
+.cell {
+  background: rgba(232, 244, 248, 0.95);
+  font-size: 2.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 12px;
+  user-select: none;
+  transition: all 0.3s ease;
+  color: #0f2557;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(74, 123, 200, 0.2);
+  
+  &:hover {
+    background: rgba(232, 244, 248, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(30, 60, 114, 0.4);
+    border-color: #4a7bc8;
+  }
+  
+  &.highlight {
+    background: linear-gradient(45deg, #0f2557, #1e3c72);
+    color: #e8f4f8;
+    transform: scale(1.02);
+    box-shadow: 0 6px 25px rgba(15, 37, 87, 0.6);
+    border-color: #4a7bc8;
+  }
+}
+
+.game-buttons {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  max-width: 300px;
+  
+  .action-button {
+    flex: 1;
+    --border-color: rgba(232, 244, 248, 0.4);
+    --color: #e8f4f8;
+    font-weight: 600;
+    
+    &:hover {
+      --background: rgba(232, 244, 248, 0.1);
+      --border-color: #4a7bc8;
+    }
+  }
+}
+
+// Responsividad para dispositivos móviles
+@media (max-width: 480px) {
+  .title-tateti {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .board {
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: repeat(3, 80px);
+    gap: 8px;
+  }
+  
+  .cell {
+    font-size: 2rem;
+  }
+  
+  .turno-text {
+    font-size: 1.2rem;
+  }
+  
+  .game-buttons {
+    flex-direction: column;
+    max-width: 250px;
+  }
+}
+
+// Animaciones
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.registration-section,
+.game-section {
+  animation: fadeIn 0.5s ease-out;
+}
+
+// Mejoras visuales para el header
+ion-header {
+  ion-toolbar {
+    --background: linear-gradient(45deg, #0f2557, #1e3c72);
+    --color: #e8f4f8;
+    
+    ion-title {
+      font-weight: bold;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+  }
+}
+

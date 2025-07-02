@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Ejercicios con filter()</h1>
+  <section>
+    <h2>Números mayores a 10</h2>
+    <form id="formNumeros">
+      <input type="number" id="numeroInput" required placeholder="Agregar número">
+      <button type="submit">Agregar</button>
+    </form>
+    <button id="filtrarNumeros">Filtrar</button>
+    <ul id="listaNumeros"></ul>
+  </section>
+  <section>
+    <h2>Palabras con más de 5 letras</h2>
+    <form id="formPalabras">
+      <input type="text" id="palabraInput" required placeholder="Agregar palabra">
+      <button type="submit">Agregar</button>
+    </form>
+    <button id="filtrarPalabras">Filtrar</button>
+    <ul id="listaPalabras"></ul>
+  </section>
+  <section>
+    <h2>Usuarios Activos</h2>
+    <button id="mostrarUsuarios">Mostrar Usuarios Activos</button>
+    <ul id="listaUsuarios"></ul>
+  </section>
+  <script src="script.js"></script>
+</body>
+</html>

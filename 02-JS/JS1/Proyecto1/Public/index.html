@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Registrar Frutas, Amigos y Número</h1>
+
+  <form id="formulario">
+    <fieldset>
+      <legend>Frutas (3)</legend>
+      <input type="text" id="fruta1" required placeholder="Fruta 1">
+      <input type="text" id="fruta2" required placeholder="Fruta 2">
+      <input type="text" id="fruta3" required placeholder="Fruta 3">
+    </fieldset>
+
+    <fieldset>
+      <legend>Amigos (3)</legend>
+      <input type="text" id="amigo1" required placeholder="Amigo 1">
+      <input type="text" id="amigo2" required placeholder="Amigo 2">
+      <input type="text" id="amigo3" required placeholder="Amigo 3">
+    </fieldset>
+
+    <fieldset>
+      <legend>Número (debe ser mayor al anterior)</legend>
+      <input type="number" id="numero" required placeholder="Número">
+    </fieldset>
+
+    <button type="submit" >Guardar</button>
+  </form>
+
+  <button id="mostrar">Mostrar</button>
+
+  <section id="salida">
+    <h2>Frutas</h2>
+    <ul id="lista-frutas"></ul>
+
+    <h2>Amigos</h2>
+    <ul id="lista-amigos"></ul>
+
+    <h2>Números</h2>
+    <ul id="lista-numeros"></ul>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Registro</title>
+    <style>
+        /* Estilo del formulario */
+        form {
+            max-width: 400px; 
+            margin: 0 auto; 
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilo de los div del formulario */
+        .grupo-formulario {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        /* Estilo del label*/
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        /* Estilo de los campos de texto y email */
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        select {
+            width: 100%; 
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Estilo de los div de los label y de los option*/
+        .grupo-opciones {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        /* Estilo del boton */
+        button {
+            background-color: blue;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Estilo del boton al pasar el mouse por encima */
+        button:hover {
+            background-color: darkblue;
+        }
+        /* Estilo del div*/
+        .contenedor {
+            text-align: center;
+            padding: 30px;
+        }
+        /* Estilo del titulo */
+        h1 {
+            color: blue;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Registro de Usuario</h1>
+        <form id="formulario">
+            <div class="grupo-formulario">
+                <label>Nombre:</label>
+                <input type="text" name="nombre" required>
+            </div>
+
+            <div class="grupo-formulario">
+                <label>Edad:</label>
+                <input type="number" name="edad" required>
+            </div>
+
+            <div class="grupo-formulario">
+                <label>Email:</label>
+                <input type="email" name="email" required>
+            </div>
+
+            <div class="grupo-formulario">
+                <label>Género:</label>
+                <div class="grupo-opciones">
+                    <label><input type="radio" name="genero" value="Masculino"> Masculino</label>
+                    <label><input type="radio" name="genero" value="Femenino"> Femenino</label>
+                </div>
+            </div>
+
+            <div class="grupo-formulario">
+                <label>País:</label>
+                <select name="pais">
+                    <option value="Argentina">Argentina</option>
+                    <option value="México">México</option>
+                    <option value="España">España</option>
+                </select>
+            </div>
+
+            <div class="grupo-formulario">
+                <label>Intereses:</label>
+                <div class="grupo-opciones">
+                    <label><input type="checkbox" name="intereses" value="Deporte"> Deporte</label>
+                    <label><input type="checkbox" name="intereses" value="Arte"> Arte</label>
+                    <label><input type="checkbox" name="intereses" value="Tecnología"> Tecnología</label>
+                </div>
+            </div>
+
+            <button type="submit">Registrar</button>
+        </form>
+
+        <div id="resultado"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Ta-Te-Ti</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="container">
+    
+    <!-- Formulario de Registro -->
+    <div *ngIf="showRegistration" class="registration-section">
+      <h1 class="title-tateti">Ta-Te-Ti</h1>
+      
+      <ion-card class="registration-card">
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="stacked">Nombre del Jugador 1</ion-label>
+            <ion-input 
+              [(ngModel)]="player1Name" 
+              placeholder="Ingresa tu nombre"
+              required>
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Modo de Juego</ion-label>
+            <ion-select 
+              [(ngModel)]="gameMode" 
+              (ionChange)="onGameModeChange()">
+              <ion-select-option value="pve">Jugador vs Computadora</ion-select-option>
+              <ion-select-option value="pvp">Jugador vs Jugador</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item *ngIf="gameMode === 'pvp'">
+            <ion-label position="stacked">Nombre del Jugador 2</ion-label>
+            <ion-input 
+              [(ngModel)]="player2Name" 
+              placeholder="Ingresa el nombre del jugador 2"
+              required>
+            </ion-input>
+          </ion-item>
+
+          <ion-button 
+            expand="block" 
+            (click)="startGame()" 
+            [disabled]="!player1Name.trim() || (gameMode === 'pvp' && !player2Name.trim())"
+            class="start-button">
+            <ion-icon name="play" slot="start"></ion-icon>
+            Empezar
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <!-- Juego -->
+    <div *ngIf="showGame" class="game-section">
+      <h2 class="turno-text">{{ turnoText }}</h2>
+      
+      <div class="board">
+        <div 
+          *ngFor="let cell of boardState; let i = index" 
+          [class]="getCellClass(i)"
+          (click)="onCellClick(i)">
+          {{ cell }}
+        </div>
+      </div>
+
+      <div *ngIf="showEndGameButtons" class="game-buttons">
+        <ion-button 
+          fill="outline" 
+          (click)="resetGame()"
+          class="action-button">
+          <ion-icon name="refresh" slot="start"></ion-icon>
+          Reiniciar
+        </ion-button>
+        
+        <ion-button 
+          fill="outline" 
+          (click)="goToRegister()"
+          class="action-button">
+          <ion-icon name="arrow-back" slot="start"></ion-icon>
+          Volver al Registro
+        </ion-button>
+      </div>
+    </div>
+    
+  </div>
+</ion-content>

@@ -1,0 +1,69 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Piedra, Papel, Tijeras, Lagarto, Spock</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="body-container">
+    <h1 class="game-title main-title">Piedra, Papel, Tijera,<br>Lagarto o Spock</h1>
+
+    <div *ngIf="showLogin" class="main-layout-container" id="main-layout-container">
+      <div class="login" id="login-screen">
+        <h2>Regístrate</h2>
+        <input type="text" id="player1" placeholder="Nombre Jugador 1" [(ngModel)]="player1Name">
+        <input type="text" id="player2" placeholder="Nombre Jugador 2 (opcional, deja vacío para IA)" [(ngModel)]="player2Name">
+        <button id="start-button" (click)="startGame()">Comenzar</button>
+
+        <div class="instructions">
+          <h3>Instrucciones de Teclas:</h3>
+          <div class="key-groups-container">
+            <div class="key-group">
+              <h4>Jugador 1:</h4>
+              <ul>
+                <li><strong>Q:</strong> Piedra</li>
+                <li><strong>W:</strong> Papel</li>
+                <li><strong>E:</strong> Tijera</li>
+                <li><strong>A:</strong> Lagarto</li>
+                <li><strong>S:</strong> Spock</li>
+              </ul>
+            </div>
+            <div class="key-group">
+              <h4>Jugador 2:</h4>
+              <ul>
+                <li><strong>I:</strong> Piedra</li>
+                <li><strong>O:</strong> Papel</li>
+                <li><strong>P:</strong> Tijera</li>
+                <li><strong>K:</strong> Lagarto</li>
+                <li><strong>L:</strong> Spock</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tutorial-image-container" id="tutorial-image-container-login">
+        <img src="https://intervia.com/img/piedra-papel-tijera-lagarto-spock.png" alt="Tutorial Piedra, Papel, Tijera, Lagarto o Spock" class="tutorial-image">
+      </div>
+    </div>
+
+    <div *ngIf="!showLogin" class="game" id="game-screen">
+      <div class="scoreboard">
+        <div><span>{{ label1 }}</span>: <span>{{ score1 }}</span></div>
+        <div><span>{{ label2 }}</span>: <span>{{ score2 }}</span></div>
+      </div>
+      <h2>{{ modeTitle }}</h2>
+      <button id="change-mode" (click)="changeMode()">Cambiar Modo</button>
+
+      <div id="timer">{{ timer }}</div>
+
+      <div class="prompt">Presiona tecla para elegir:</div>
+
+      <div id="result" [innerHTML]="result"></div>
+      <button id="restart-round" [style.display]="showRestartButton ? 'block' : 'none'" (click)="startRound()">Siguiente Ronda</button>
+    </div>
+  </div>
+</ion-content>
