@@ -1,14 +1,5 @@
-// CZooAnimal.js
-// Clase con los campos indicados en la consigna
-
+// Exportamos la clase CZooAnimal
 export class CZooAnimal {
-  /**
-   * @param {number} IdAnimal      Identificador único
-   * @param {string} nombre        Nombre del animal
-   * @param {number} JaulaNumero   Número de la jaula
-   * @param {number} IdTypeAnimal  1=Felino,2=Ave,3=Reptil,...
-   * @param {number} peso          Peso en kilogramos
-   */
   constructor(IdAnimal, nombre, JaulaNumero, IdTypeAnimal, peso) {
     this.IdAnimal      = IdAnimal;
     this.nombre        = nombre;
@@ -16,8 +7,7 @@ export class CZooAnimal {
     this.IdTypeAnimal  = IdTypeAnimal;
     this.peso          = peso;
   }
-
-  /** true si es felino (IdTypeAnimal === 1) */
+  // Verifica que el animal sea felino
   get esFelino() {
     return this.IdTypeAnimal === 1;
   }
