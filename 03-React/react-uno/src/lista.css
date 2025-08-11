@@ -1,0 +1,52 @@
+.tareas {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  font-family: Arial, sans-serif;
+}
+
+.formulario {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 6px;
+}
+
+button {
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+ul {
+  list-style-type:disc; 
+  padding: 0;
+  list-style-position: inside;
+}
+
+li {
+  padding: 5px 0;
+  cursor: pointer;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.completada {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 500px) {
+  .tareas {
+    width: 90%;
+  }
+}

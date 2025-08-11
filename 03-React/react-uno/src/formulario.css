@@ -1,0 +1,40 @@
+.form-container {
+  max-width: 400px;
+  margin: 30px auto;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+input {
+  padding: 8px;
+  font-size: 1rem;
+}
+
+button {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+}
+
+.mensaje {
+  color: green;
+  font-weight: bold;
+}
+
+@media (max-width: 500px) {
+  .form-container {
+    width: 90%;
+  }
+}
