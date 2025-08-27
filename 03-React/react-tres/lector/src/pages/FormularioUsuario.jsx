@@ -16,9 +16,7 @@ export default function FormularioUsuario() {
     email: ''
   });
 
-  // errores por campo
   const [errores, setErrores] = useState({});
-  // touched para mostrar errores sólo después de que el usuario interactuó
   const [touched, setTouched] = useState({});
   const [cargando, setCargando] = useState(false);
   const [mensajeError, setMensajeError] = useState(null);
@@ -54,8 +52,8 @@ export default function FormularioUsuario() {
   }, [id]);
 
   // Validadores
-  const reNombre = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'\-]+$/u; // letras, espacios, apóstrofe y guión (acentos incluidos)
-  const reTelefono = /^[0-9+\s()\-]*$/; // permitimos dígitos, espacios, +, (), -
+  const reNombre = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'\-]+$/u;
+  const reTelefono = /^[0-9+\s()\-]*$/;
 
   function validarCampo(name, value) {
     if (name === 'nombre' || name === 'apellido') {
@@ -64,31 +62,26 @@ export default function FormularioUsuario() {
       return null;
     }
     if (name === 'telefono' || name === 'celular') {
-      if (!value) return null; // permitimos vacío
+      if (!value) return null;
       if (!reTelefono.test(value)) return 'Sólo dígitos, espacios, +, ( ) y guiones';
       return null;
     }
     if (name === 'email') {
       if (!value) return null;
-      // validación simple de email
       const reEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!reEmail.test(value)) return 'Email inválido';
       return null;
     }
-    // otros campos no obligatorios por ahora
     return null;
   }
 
   const cambiar = (e) => {
     const { name, value } = e.target;
     setForm(prev => ({ ...prev, [name]: value }));
-    // marcar touched
     setTouched(prev => ({ ...prev, [name]: true }));
-    // validar y setear error
     setErrores(prev => ({ ...prev, [name]: validarCampo(name, value) }));
   };
 
-  // onBlur marcar touched y validar
   const manejarBlur = (e) => {
     const { name, value } = e.target;
     setTouched(prev => ({ ...prev, [name]: true }));
@@ -102,7 +95,6 @@ export default function FormularioUsuario() {
       if (err) nuevosErrores[k] = err;
     });
     setErrores(nuevosErrores);
-    // marcar todos como touched para mostrar errores
     const todosTouched = {};
     Object.keys(form).forEach(k => todosTouched[k] = true);
     setTouched(todosTouched);
@@ -141,7 +133,6 @@ export default function FormularioUsuario() {
     }
   };
 
-  // helper para clases de validación bootstrap
   const claseInput = (campo) => {
     if (!touched[campo]) return 'form-control';
     return errores[campo] ? 'form-control is-invalid' : 'form-control is-valid';

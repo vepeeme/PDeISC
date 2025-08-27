@@ -5,13 +5,10 @@ export default function BarraNav() {
   const location = useLocation();
   const [abierta, setAbierta] = useState(false);
 
-  // Cerrar el menú al cambiar de ruta (útil en mobile)
   useEffect(() => {
     setAbierta(false);
   }, [location.pathname]);
 
-  // Si estamos exactamente en /usuarios (listado) mostramos "Agregar".
-  // En cualquier otra ruta mostramos "Listado".
   const mostrarAgregar = location.pathname === '/usuarios' || location.pathname === '/';
   const enlace = mostrarAgregar ? { to: '/usuarios/crear', texto: 'Agregar' } : { to: '/usuarios', texto: 'Listado' };
 
@@ -19,8 +16,6 @@ export default function BarraNav() {
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container">
         <Link className="navbar-brand" to="/">ABMLC Usuarios</Link>
-
-        {/* Toggler controlado por React (no depende del JS de Bootstrap) */}
         <button
           className="navbar-toggler"
           type="button"

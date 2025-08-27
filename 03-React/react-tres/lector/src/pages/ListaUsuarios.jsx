@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import TablaUsuarios from '../components/TablaUsuarios';
 
-/**
- * ListaUsuarios: hace fetch directo a http://localhost:5000/usuarios
- * - No usa alerts; muestra mensajes con Bootstrap alert.
- * - Flujo de eliminación con confirmación inline.
- */
-
 export default function ListaUsuarios() {
   const [usuarios, setUsuarios] = useState([]);
   const [cargando, setCargando] = useState(true);
