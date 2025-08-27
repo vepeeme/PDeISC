@@ -1,14 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-/**
- * Props:
- * - usuarios: array
- * - onSolicitarEliminar(id)
- * - onConfirmarEliminar(id)
- * - onCancelarEliminar()
- * - confirmId: id en confirmación o null
- */
 export default function TablaUsuarios({ usuarios = [], onSolicitarEliminar, onConfirmarEliminar, onCancelarEliminar, confirmId }) {
   return (
     <div className="table-responsive">
