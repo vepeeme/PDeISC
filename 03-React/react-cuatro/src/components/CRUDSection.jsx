@@ -5,6 +5,7 @@ import ItemForm from './ItemForm';
 
 const CRUDSection = ({ 
   title, 
+  singularTitle, // <--- Nueva propiedad
   type, 
   items, 
   icon: Icon, 
@@ -35,7 +36,7 @@ const CRUDSection = ({
 
   const handleEdit = (item) => {
     setEditingItem(item);
-    setShowForm(false); // Cerrar formulario de creación si está abierto
+    setShowForm(false); 
   };
 
   return (
@@ -58,16 +59,16 @@ const CRUDSection = ({
             whileTap={{ scale: 0.95 }}
             onClick={() => {
               setShowForm(true);
-              setEditingItem(null); // Cerrar edición si está abierta
+              setEditingItem(null);
             }}
             className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 flex items-center gap-2 shadow-lg transition-all"
           >
-            <Plus size={16} /> Agregar {title.slice(0, -1)}
+            {/* Usamos la nueva propiedad para el texto del botón */}
+            <Plus size={16} /> Agregar {singularTitle || title.slice(0, -1)}
           </motion.button>
         )}
       </div>
 
-      {/* Formulario de creación */}
       <AnimatePresence>
         {showForm && (
           <ItemForm
@@ -78,7 +79,6 @@ const CRUDSection = ({
         )}
       </AnimatePresence>
 
-      {/* Formulario de edición */}
       <AnimatePresence>
         {editingItem && (
           <ItemForm
@@ -90,7 +90,6 @@ const CRUDSection = ({
         )}
       </AnimatePresence>
 
-      {/* Lista de elementos */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {items.length === 0 ? (
           <div className="col-span-full text-center py-12">

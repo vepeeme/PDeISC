@@ -200,3 +200,31 @@ body {
     color: black !important;
   }
 }
+/* Forzar color de texto en inputs/textarea/select para que no se vea blanco */
+input, textarea, select, button, .input, .form-input {
+  color: #0b1220 !important; /* negro oscuro */
+}
+
+/* Placeholder más suave y legible */
+input::placeholder, textarea::placeholder {
+  color: #6b7280 !important;
+  opacity: 1;
+}
+
+/* Si usás algún tema oscuro en Tailwind, asegurar contraste */
+*:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+/* Hacer que las tarjetas/listas sean responsivas (si no están ya) */
+.list-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0,1fr));
+  gap: 1rem;
+}
+@media (min-width: 640px) { /* sm */
+  .list-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (min-width: 768px) { /* md */
+  .list-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+}

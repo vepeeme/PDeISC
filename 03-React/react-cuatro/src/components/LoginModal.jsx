@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import toast from 'react-hot-toast'; // <--- IMPORTAR TOAST
 
 const LoginModal = ({ showLogin, setShowLogin, setIsAdmin }) => {
   const [password, setPassword] = useState('');
@@ -9,8 +10,9 @@ const LoginModal = ({ showLogin, setShowLogin, setIsAdmin }) => {
       setIsAdmin(true);
       setShowLogin(false);
       setPassword('');
+      toast.success('¡Sesión iniciada!');
     } else {
-      alert('Contraseña incorrecta. Usa: admin123');
+      toast.error('Contraseña incorrecta.'); // <--- CAMBIAR ALERT POR TOAST
     }
   };
 
@@ -24,23 +26,17 @@ const LoginModal = ({ showLogin, setShowLogin, setIsAdmin }) => {
     <AnimatePresence>
       {showLogin && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-          onClick={() => setShowLogin(false)}
+          // ... (props de motion)
         >
           <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
+            // ... (props de motion)
             className="bg-white p-6 rounded-lg shadow-xl max-w-md w-full mx-4"
             onClick={(e) => e.stopPropagation()}
           >
             <h3 className="text-lg font-semibold mb-4">Login de Administrador</h3>
             <input
               type="password"
-              placeholder="Contraseña (admin123)"
+              placeholder="Contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               onKeyPress={handleKeyPress}

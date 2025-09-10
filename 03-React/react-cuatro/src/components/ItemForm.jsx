@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Save, X } from 'lucide-react';
+import toast from 'react-hot-toast'; // <--- IMPORTAR TOAST
 
 const ItemForm = ({ type, item, onSave, onCancel }) => {
   const [formData, setFormData] = useState(item || {});
 
   const getFields = () => {
+    // ... (El contenido de esta función no cambia)
     switch (type) {
       case 'skills':
         return [
@@ -40,27 +42,22 @@ const ItemForm = ({ type, item, onSave, onCancel }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // Validar campos requeridos
     const fields = getFields();
     for (let field of fields) {
       if (field.required && !formData[field.key]?.trim()) {
-        alert(`El campo ${field.label} es requerido`);
+        toast.error(`El campo "${field.label}" es requerido.`); // <--- CAMBIAR ALERT POR TOAST
         return;
       }
     }
-    
     onSave(formData);
   };
 
   const handleInputChange = (key, value) => {
-    setFormData(prev => ({
-      ...prev,
-      [key]: value
-    }));
+    setFormData(prev => ({ ...prev, [key]: value }));
   };
 
   const getTypeLabel = () => {
+    // ... (El contenido de esta función no cambia)
     const labels = {
       skills: 'Habilidad',
       achievements: 'Logro',
@@ -80,9 +77,9 @@ const ItemForm = ({ type, item, onSave, onCancel }) => {
       <h3 className="text-xl font-semibold mb-4 text-gray-800">
         {item ? `Editar ${getTypeLabel()}` : `Crear ${getTypeLabel()}`}
       </h3>
-      
       <form onSubmit={handleSubmit} className="space-y-4">
-        {getFields().map(field => (
+        {/* ... (El contenido del formulario no cambia) ... */}
+         {getFields().map(field => (
           <div key={field.key}>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               {field.label}
