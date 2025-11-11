@@ -3,7 +3,6 @@ import pkg from 'pg';
 const { Pool } = pkg;
 import bcrypt from 'bcrypt';
 
-
 export let pool = null;
 
 // Función auxiliar para obtener el pool
@@ -16,20 +15,21 @@ export function getPool() {
 
 export async function conectarBD() {
   try {
-    //CREAR POOL DE POSTGRESQL
+    //  Crear pool de PostgreSQL
     pool = new Pool({
-      host: process.env.PGHOST,
-      port: parseInt(process.env.PGPORT || '5432'),
-      user: process.env.PGUSER,
-      password: process.env.PGPASSWORD,
-      database: process.env.PGDATABASE,
-      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
-      max: 10, 
+      connectionString:
+        process.env.DATABASE_URL ||
+        `postgresql://proyecto_final_db_wvxl_user:DjLDQogPgX5A1jyUvmEuakdTGrbmRiHM@dpg-d49jgts9c44c73bn7g3g-a.oregon-postgres.render.com/proyecto_final_db_wvxl`,
+      ssl:
+        process.env.NODE_ENV === 'production'
+          ? { rejectUnauthorized: false } 
+          : false,
+      max: 10,
       idleTimeoutMillis: 30000,
       connectionTimeoutMillis: 10000,
     });
 
-    // Probar conexión
+    // 🧠 Probar conexión
     await pool.query('SELECT NOW()');
     console.log('✅ Conexión a PostgreSQL establecida');
 
