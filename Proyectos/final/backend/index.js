@@ -6,8 +6,6 @@ import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
 import os from 'os';
 import { conectarBD } from './config/database.js';
-
-// Importar rutas
 import authRoutes from './routes/auth.routes.js';
 import usuariosRoutes from './routes/usuarios.routes.js';
 import areasRoutes from './routes/areas.routes.js';
@@ -21,14 +19,12 @@ const PUERTO = process.env.PORT || 5000;
 // Helmet para headers de seguridad
 app.use(helmet());
 
-//  CORS MEJORADO
-const allowedOrigins = [
-  'http://localhost:19006',
-  'http://localhost:8081',
-  'http://localhost:3000',
-  '*',
-  process.env.FRONTEND_URL
-].filter(Boolean);
+app.use(cors({
+  origin: '*',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 app.use(cors({
   origin: (origin, callback) => {
