@@ -48,7 +48,7 @@ app.use(cors({
       callback(null, true);
     } else {
       console.log('⚠️ Origen bloqueado:', origin);
-      callback(new Error('Not allowed by CORS')); // ← Bloquear realmente
+      callback(new Error('Not allowed by CORS'));
     }
   },
   credentials: true,
@@ -59,38 +59,30 @@ app.use(cors({
   optionsSuccessStatus: 204
 }));
 
-app.options('*', cors());
-
-//  Helmet con configuración para producción
 app.use(helmet({
   crossOriginResourcePolicy: { policy: "cross-origin" },
   contentSecurityPolicy: IS_PRODUCTION ? undefined : false
 }));
 
-//  Rate limiting configurado correctamente
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutos
-  max: IS_PRODUCTION ? 200 : 1000, // Más permisivo en dev
+  windowMs: 15 * 60 * 1000,
+  max: IS_PRODUCTION ? 200 : 1000,
   message: {
     exito: false,
     mensaje: 'Demasiadas peticiones. Intenta de nuevo en 15 minutos.'
   },
   standardHeaders: true,
   legacyHeaders: false,
-  //  IMPORTANTE: Usar el header correcto para identificar IPs detrás de proxy
   skip: (req) => {
-    // No aplicar rate limit en health check
     return req.path === '/api/health' || req.path === '/health';
   }
 });
 
 app.use('/api/', limiter);
 
-// Body parsers
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
-//  Logger mejorado con más info
 app.use((req, res, next) => {
   const timestamp = new Date().toLocaleTimeString();
   const ip = req.ip || req.connection.remoteAddress;
@@ -105,7 +97,6 @@ app.use('/api/areas', areasRoutes);
 app.use('/api/actividades', actividadesRoutes);
 app.use('/api/solicitudes', solicitudesRoutes);
 
-//  Health check - SIN rate limit
 app.get('/health', (req, res) => {
   res.json({ 
     status: 'OK', 
@@ -127,7 +118,6 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Ruta raíz
 app.get('/', (req, res) => {
   res.json({
     mensaje: '🏭 API Fábrica Textil',
@@ -144,7 +134,6 @@ app.get('/', (req, res) => {
   });
 });
 
-//  Manejo de rutas no encontradas
 app.use((req, res) => {
   console.log('❌ Ruta no encontrada:', req.method, req.path);
   res.status(404).json({
@@ -156,12 +145,10 @@ app.use((req, res) => {
   });
 });
 
-//  Manejo de errores global
 app.use((err, req, res, next) => {
   console.error('❌ Error global:', err.message);
   console.error('Stack:', err.stack);
   
-  // Error de rate limit
   if (err.code === 'ERR_ERL_UNEXPECTED_X_FORWARDED_FOR') {
     console.error('⚠️ Error de Rate Limit - trust proxy configurado:', app.get('trust proxy'));
     return res.status(500).json({
@@ -170,7 +157,6 @@ app.use((err, req, res, next) => {
     });
   }
 
-  // Error de autenticación
   if (err.name === 'UnauthorizedError') {
     return res.status(401).json({
       exito: false,
@@ -178,7 +164,6 @@ app.use((err, req, res, next) => {
     });
   }
 
-  // Error de validación
   if (err.name === 'ValidationError') {
     return res.status(400).json({
       exito: false,
@@ -187,7 +172,6 @@ app.use((err, req, res, next) => {
     });
   }
 
-  // Error genérico
   res.status(err.status || 500).json({
     exito: false,
     mensaje: err.message || 'Error interno del servidor',
@@ -198,10 +182,8 @@ app.use((err, req, res, next) => {
   });
 });
 
-//  INICIAR SERVIDOR
 (async () => {
   try {
-    // Conectar a la base de datos
     await conectarBD();
     
     const ipLocal = obtenerIPLocal();
@@ -217,7 +199,7 @@ app.use((err, req, res, next) => {
       console.log(`🔒 CORS:         ${IS_PRODUCTION ? 'Restringido' : 'Abierto'}`);
       console.log(`🔐 Trust Proxy:  ${app.get('trust proxy')}`);
       console.log('='.repeat(70));
-      console.log(' Servidor iniciado correctamente');
+      console.log('✅ Servidor iniciado correctamente');
       console.log('\n📋 Rutas disponibles:');
       console.log('   ❤️  GET  /api/health');
       console.log('   🔐 POST /api/auth/registro/trabajador');
@@ -253,7 +235,6 @@ function obtenerIPLocal() {
   return 'localhost';
 }
 
-//  Manejo de señales de terminación
 process.on('SIGTERM', () => {
   console.log('👋 SIGTERM recibido, cerrando servidor gracefully...');
   process.exit(0);
@@ -264,7 +245,6 @@ process.on('SIGINT', () => {
   process.exit(0);
 });
 
-//  Manejo de errores no capturados
 process.on('unhandledRejection', (reason, promise) => {
   console.error('❌ Unhandled Rejection en:', promise);
   console.error('Razón:', reason);
