@@ -5,17 +5,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { useAuth } from '@/context/AuthContext';
 import { Colors } from '@/constants';
 
-// Auth Screens
 import LoginScreen from '@/screens/auth/LoginScreen';
 import RegisterWorkerScreen from '@/screens/auth/RegisterWorkerScreen';
 import RegisterSupervisorScreen from '@/screens/auth/RegisterSupervisorScreen';
 import CompleteGoogleRegisterScreen from '@/screens/auth/CompleteGoogleRegisterScreen';
 
-// Admin Navigator
 import AdminNavigator from './AdminNavigator';
-// Encargado Navigator
 import SupervisorNavigator from './SupervisorNavigator';
-// Trabajador Navigator
 import WorkerNavigator from './WorkerNavigator';
 
 const Stack = createStackNavigator();

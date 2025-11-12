@@ -5,27 +5,29 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '@/constants';
 
-// Supervisor Screens
 import SupervisorDashboardScreen from '@/screens/supervisor/SupervisorDashboardScreen';
 import SupervisorActivitiesScreen from '@/screens/supervisor/SupervisorActivitiesScreen';
 import CreateActivityScreen from '@/screens/supervisor/CreateActivityScreen';
 import EditActivityScreen from '@/screens/supervisor/EditActivityScreen';
 import AssignWorkersScreen from '@/screens/supervisor/AssignWorkersScreen';
 
-// Shared Screens
 import ActivityDetailScreen from '@/screens/shared/ActivityDetailsScreen';
 import ProfileScreen from '@/screens/shared/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-// Stack de Actividades
 const ActivitiesStack = () => (
   <Stack.Navigator>
     <Stack.Screen
       name="SupervisorActivitiesList"
       component={SupervisorActivitiesScreen}
       options={{ title: 'Mis Actividades', headerStyle: { backgroundColor: Colors.primary }, headerTintColor: '#fff' }}
+    />
+    <Stack.Screen
+      name="ActivityDetail"
+      component={ActivityDetailScreen}
+      options={{ title: 'Detalle de Actividad', headerStyle: { backgroundColor: Colors.primary }, headerTintColor: '#fff' }}
     />
     <Stack.Screen
       name="CreateActivity"
@@ -42,15 +44,9 @@ const ActivitiesStack = () => (
       component={AssignWorkersScreen}
       options={{ title: 'Asignar Trabajadores', headerStyle: { backgroundColor: Colors.primary }, headerTintColor: '#fff' }}
     />
-    <Stack.Screen
-      name="ActivityDetail"
-      component={ActivityDetailScreen}
-      options={{ title: 'Detalle de Actividad', headerStyle: { backgroundColor: Colors.primary }, headerTintColor: '#fff' }}
-    />
   </Stack.Navigator>
 );
 
-// Tabs principales del encargado
 const SupervisorTabs = () => (
   <Tab.Navigator
     screenOptions={({ route }) => ({

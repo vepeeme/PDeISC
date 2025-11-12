@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "806188584181",
+    "project_id": "proyecto-final-e7d80",
+    "storage_bucket": "proyecto-final-e7d80.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:806188584181:android:f812f515c3089846e909bc",
+        "android_client_info": {
+          "package_name": "com.vepeeme0.frontend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8n4qPI-AFZh27PH5OATSPcWN4VOGGGUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

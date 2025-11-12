@@ -127,7 +127,6 @@ const WorkerActivitiesScreen: React.FC<{ navigation: any }> = ({ navigation }) =
 
   return (
     <View style={styles.container}>
-      {/* Filters */}
       <View style={styles.filters}>
         {(['all', 'Pendiente', 'En Progreso', 'Finalizada'] as const).map((estado) => (
           <TouchableOpacity

@@ -9,7 +9,6 @@ import {
   ScrollView,
   Alert,
   ActivityIndicator,
-  Platform,
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -90,18 +89,16 @@ const CreateActivityScreen: React.FC<{ navigation: any }> = ({ navigation }) => 
   };
 
   const onDateChange = (type: 'inicio' | 'fin', event: any, selectedDate?: Date) => {
-    if (Platform.OS === 'android') {
-      setShowDatePicker({ ...showDatePicker, [type]: false });
-    }
+    setShowDatePicker({ inicio: false, fin: false });
 
-    // Solo actualizar si se presionó OK (no CANCEL)
+    // Solo actualizar si el usuario presionó OK (no CANCEL)
     if (event.type === 'set' && selectedDate) {
-      setFormData({ ...formData, [`fecha_${type}`]: selectedDate });
+      if (type === 'inicio') {
+        setFormData({ ...formData, fecha_inicio: selectedDate });
+      } else {
+        setFormData({ ...formData, fecha_fin_estimada: selectedDate });
+      }
     }
-  };
-
-  const closeDatePicker = (type: 'inicio' | 'fin') => {
-    setShowDatePicker({ ...showDatePicker, [type]: false });
   };
 
   if (loadingAreas) {
@@ -183,11 +180,12 @@ const CreateActivityScreen: React.FC<{ navigation: any }> = ({ navigation }) => 
           </View>
         </View>
 
+        {/* Fecha de Inicio */}
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Fecha de Inicio</Text>
           <TouchableOpacity
             style={styles.dateButton}
-            onPress={() => setShowDatePicker({ ...showDatePicker, inicio: true })}
+            onPress={() => setShowDatePicker({ inicio: true, fin: false })}
           >
             <Ionicons name="calendar-outline" size={20} color={Colors.primary} />
             <Text style={styles.dateText}>
@@ -195,30 +193,21 @@ const CreateActivityScreen: React.FC<{ navigation: any }> = ({ navigation }) => 
             </Text>
           </TouchableOpacity>
           {showDatePicker.inicio && (
-            <>
-              <DateTimePicker
-                value={formData.fecha_inicio}
-                mode="date"
-                display={Platform.OS === 'ios' ? 'spinner' : 'default'}
-                onChange={(e, d) => onDateChange('inicio', e, d)}
-              />
-              {Platform.OS === 'ios' && (
-                <TouchableOpacity
-                  style={styles.doneButton}
-                  onPress={() => closeDatePicker('inicio')}
-                >
-                  <Text style={styles.doneButtonText}>Listo</Text>
-                </TouchableOpacity>
-              )}
-            </>
+            <DateTimePicker
+              value={formData.fecha_inicio}
+              mode="date"
+              display="default"
+              onChange={(e, d) => onDateChange('inicio', e, d)}
+            />
           )}
         </View>
 
+        {/* Fecha Fin Estimada */}
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Fecha Fin Estimada</Text>
           <TouchableOpacity
             style={styles.dateButton}
-            onPress={() => setShowDatePicker({ ...showDatePicker, fin: true })}
+            onPress={() => setShowDatePicker({ inicio: false, fin: true })}
           >
             <Ionicons name="calendar-outline" size={20} color={Colors.primary} />
             <Text style={styles.dateText}>
@@ -226,22 +215,12 @@ const CreateActivityScreen: React.FC<{ navigation: any }> = ({ navigation }) => 
             </Text>
           </TouchableOpacity>
           {showDatePicker.fin && (
-            <>
-              <DateTimePicker
-                value={formData.fecha_fin_estimada}
-                mode="date"
-                display={Platform.OS === 'ios' ? 'spinner' : 'default'}
-                onChange={(e, d) => onDateChange('fin', e, d)}
-              />
-              {Platform.OS === 'ios' && (
-                <TouchableOpacity
-                  style={styles.doneButton}
-                  onPress={() => closeDatePicker('fin')}
-                >
-                  <Text style={styles.doneButtonText}>Listo</Text>
-                </TouchableOpacity>
-              )}
-            </>
+            <DateTimePicker
+              value={formData.fecha_fin_estimada}
+              mode="date"
+              display="default"
+              onChange={(e, d) => onDateChange('fin', e, d)}
+            />
           )}
         </View>
 
@@ -325,14 +304,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
   },
   dateText: { marginLeft: 12, fontSize: 16, color: Colors.dark },
-  doneButton: {
-    marginTop: 10,
-    backgroundColor: Colors.primary,
-    padding: 12,
-    borderRadius: 8,
-    alignItems: 'center',
-  },
-  doneButtonText: { color: '#fff', fontSize: 16, fontWeight: '600' },
   button: {
     flexDirection: 'row',
     backgroundColor: Colors.primary,

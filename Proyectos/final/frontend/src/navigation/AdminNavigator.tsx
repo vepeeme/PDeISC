@@ -1,25 +1,26 @@
-// src/navigation/AdminNavigator.tsx
+// src/navigation/AdminNavigator.tsx 
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '@/constants';
 
-// Admin Screens
 import AdminDashboardScreen from '@/screens/admin/AdminDashboardScreen';
 import AdminUsersScreen from '@/screens/admin/AdminUsersScreen';
 import AdminAreasScreen from '@/screens/admin/AdminAreasScreen';
 import AdminActivitiesScreen from '@/screens/admin/AdminActivitiesScreen';
 import AdminRequestsScreen from '@/screens/admin/AdminRequestsScreen';
 
-// Shared Screens
 import ActivityDetailScreen from '@/screens/shared/ActivityDetailsScreen';
 import ProfileScreen from '@/screens/shared/ProfileScreen';
+
+import CreateActivityScreen from '@/screens/supervisor/CreateActivityScreen';
+import EditActivityScreen from '@/screens/supervisor/EditActivityScreen';
+import AssignWorkersScreen from '@/screens/supervisor/AssignWorkersScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-// Stack de Actividades con detalle
 const ActivitiesStack = () => (
   <Stack.Navigator>
     <Stack.Screen
@@ -32,10 +33,24 @@ const ActivitiesStack = () => (
       component={ActivityDetailScreen}
       options={{ title: 'Detalle de Actividad', headerStyle: { backgroundColor: Colors.primary }, headerTintColor: '#fff' }}
     />
+    <Stack.Screen
+      name="CreateActivity"
+      component={CreateActivityScreen}
+      options={{ title: 'Crear Actividad', headerStyle: { backgroundColor: Colors.primary }, headerTintColor: '#fff' }}
+    />
+    <Stack.Screen
+      name="EditActivity"
+      component={EditActivityScreen}
+      options={{ title: 'Editar Actividad', headerStyle: { backgroundColor: Colors.primary }, headerTintColor: '#fff' }}
+    />
+    <Stack.Screen
+      name="AssignWorkers"
+      component={AssignWorkersScreen}
+      options={{ title: 'Asignar Trabajadores', headerStyle: { backgroundColor: Colors.primary }, headerTintColor: '#fff' }}
+    />
   </Stack.Navigator>
 );
 
-// Tabs principales del admin
 const AdminTabs = () => (
   <Tab.Navigator
     screenOptions={({ route }) => ({
@@ -75,7 +90,6 @@ const AdminTabs = () => (
   </Tab.Navigator>
 );
 
-// Navigator principal con perfil
 const AdminNavigator = () => (
   <Stack.Navigator>
     <Stack.Screen name="AdminTabs" component={AdminTabs} options={{ headerShown: false }} />

@@ -28,7 +28,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [user, setUser] = useState<Usuario | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Cargar usuario al iniciar
   useEffect(() => {
     loadUser();
   }, []);
@@ -117,7 +116,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         };
       }
 
-      // Usuario ya existe y está aprobado
       if (response.usuario) {
         setUser(response.usuario);
       }

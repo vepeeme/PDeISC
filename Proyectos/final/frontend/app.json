@@ -2,18 +2,20 @@
   "expo": {
     "name": "frontend",
     "slug": "frontend",
+    "scheme": "com.vepeeme0.frontend",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/Juan-Peron-1954.jpg",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/Juan-Peron-1954.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.vepeeme0.frontend"
     },
     "android": {
       "adaptiveIcon": {
@@ -22,7 +24,8 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.vepeeme0.frontend"
+      "package": "com.vepeeme0.frontend",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "favicon": "./assets/favicon.png"

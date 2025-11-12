@@ -1,4 +1,4 @@
-// src/screens/auth/LoginScreen.tsx
+// src/screens/auth/LoginScreen.tsx 
 import React, { useState, useEffect } from 'react';
 import {
   View,
@@ -13,10 +13,13 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import * as WebBrowser from 'expo-web-browser';
+import * as Google from 'expo-auth-session/providers/google';
+import { makeRedirectUri } from 'expo-auth-session';
 import { useAuth } from '../../context/AuthContext';
-import { authService } from '../../services/auth.service';
-import { Colors } from '../../constants';
-import type { ResponseType } from 'expo-auth-session';
+import { Colors, GOOGLE_CONFIG } from '../../constants';
+
+WebBrowser.maybeCompleteAuthSession();
 
 const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const { signIn, verifyGoogle } = useAuth();
@@ -26,36 +29,104 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
 
-  // Google Auth
-  const { request, response, promptAsync } = authService.useGoogleAuth();
+  const redirectUri = makeRedirectUri({
+    scheme: GOOGLE_CONFIG.scheme,
+    path: 'redirect',
+  });
+
+  console.log('🔧 Redirect URI generado:', redirectUri);
+
+  const [request, response, promptAsync] = Google.useAuthRequest({
+    clientId: GOOGLE_CONFIG.webClientId, 
+    androidClientId: GOOGLE_CONFIG.androidClientId,
+    redirectUri: redirectUri,
+  });
 
   useEffect(() => {
-    handleGoogleResponse();
-  }, [response]);
+    console.log('📱 Request disponible:', !!request);
+    console.log('🔑 Client IDs configurados:', {
+      web: GOOGLE_CONFIG.webClientId,
+      android: GOOGLE_CONFIG.androidClientId,
+    });
+  }, [request]);
 
-  const handleGoogleResponse = async () => {
-    if (response?.type === 'success') {
-      setGoogleLoading(true);
-      try {
-        const { authentication } = response;
-        if (authentication?.accessToken) {
-          const userInfo = await authService.getGoogleUserInfo(authentication.accessToken);
-          
-          const result = await verifyGoogle(userInfo.email, userInfo.name, userInfo.picture);
-          
-          if (result.needsCompletion) {
-            // Usuario nuevo, completar registro
-            navigation.navigate('CompleteGoogleRegister', {
-              googleData: result.googleData,
-            });
-          }
-          // Si no necesita completar, ya se autenticó automáticamente
-        }
-      } catch (error: any) {
-        Alert.alert('Error', error.message || 'Error al autenticar con Google');
-      } finally {
+  useEffect(() => {
+    if (response) {
+      console.log('📩 Google Response recibido:', response.type);
+      
+      if (response.type === 'success') {
+        handleGoogleSuccess(response);
+      } else if (response.type === 'error') {
+        console.error('❌ Google OAuth Error:', response.error);
+        Alert.alert('Error', 'No se pudo autenticar con Google');
+        setGoogleLoading(false);
+      } else if (response.type === 'dismiss' || response.type === 'cancel') {
+        console.log('ℹ️ Usuario canceló el login de Google');
         setGoogleLoading(false);
       }
+    }
+  }, [response]);
+
+  const handleGoogleSuccess = async (response: any) => {
+    console.log('✅ Google OAuth Success');
+    setGoogleLoading(true);
+
+    try {
+      const { authentication } = response;
+
+      if (!authentication?.accessToken) {
+        throw new Error('No se recibió token de acceso de Google');
+      }
+
+      console.log('🔐 Token recibido (primeros 20 chars):', authentication.accessToken.substring(0, 20) + '...');
+      console.log('📞 Obteniendo info del usuario de Google...');
+      
+      // Obtener info del usuario desde Google
+      const userInfoResponse = await fetch(
+        'https://www.googleapis.com/oauth2/v2/userinfo',
+        {
+          headers: { Authorization: `Bearer ${authentication.accessToken}` },
+        }
+      );
+
+      if (!userInfoResponse.ok) {
+        throw new Error('Error al obtener información de Google');
+      }
+
+      const userInfo = await userInfoResponse.json();
+      console.log('👤 User Info recibido:', { 
+        email: userInfo.email, 
+        name: userInfo.name,
+        picture: userInfo.picture ? 'present' : 'missing'
+      });
+
+      // ✅ Verificar con tu backend
+      console.log('📞 Llamando a backend /auth/google/verify...');
+      const result = await verifyGoogle(
+        userInfo.email,
+        userInfo.name,
+        userInfo.picture
+      );
+
+      console.log('📄 Backend response:', { 
+        needsCompletion: result.needsCompletion,
+      });
+
+      if (result.needsCompletion) {
+        console.log('➡️ Usuario nuevo, navegando a completar registro');
+        navigation.navigate('CompleteGoogleRegister', {
+          googleData: result.googleData,
+        });
+      } else {
+        console.log('✅ Usuario existente, login exitoso');
+        Alert.alert('¡Bienvenido!', 'Inicio de sesión exitoso');
+      }
+    } catch (error: any) {
+      console.error('❌ Error en Google login:', error);
+      console.error('Stack:', error.stack);
+      Alert.alert('Error', error.message || 'Error al autenticar con Google');
+    } finally {
+      setGoogleLoading(false);
     }
   };
 
@@ -76,10 +147,24 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   };
 
   const handleGoogleSignIn = async () => {
+    console.log('\n🚀 === INICIANDO GOOGLE SIGN IN ===');
+    console.log('Request disponible:', !!request);
+    console.log('Redirect URI:', redirectUri);
+    
+    if (!request) {
+      Alert.alert('Error', 'Google Auth no está listo. Intenta de nuevo.');
+      return;
+    }
+
+    setGoogleLoading(true);
     try {
-      await promptAsync();
+      console.log('📱 Llamando a promptAsync...');
+      const result = await promptAsync();
+      console.log('📩 promptAsync result type:', result?.type);
     } catch (error) {
-      Alert.alert('Error', 'No se pudo iniciar sesión con Google');
+      console.error('❌ Error al abrir Google:', error);
+      Alert.alert('Error', 'No se pudo abrir Google Sign In');
+      setGoogleLoading(false);
     }
   };
 
@@ -96,9 +181,7 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
           <Text style={styles.subtitle}>Gestión de Actividades</Text>
         </View>
 
-        {/* Form */}
         <View style={styles.form}>
-          {/* Usuario */}
           <View style={styles.inputContainer}>
             <Ionicons name="person-outline" size={20} color={Colors.gray} style={styles.inputIcon} />
             <TextInput
@@ -110,8 +193,6 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
               autoCorrect={false}
             />
           </View>
-
-          {/* Password */}
           <View style={styles.inputContainer}>
             <Ionicons name="lock-closed-outline" size={20} color={Colors.gray} style={styles.inputIcon} />
             <TextInput
@@ -140,7 +221,6 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
             )}
           </TouchableOpacity>
 
-          {/* Divider */}
           <View style={styles.divider}>
             <View style={styles.dividerLine} />
             <Text style={styles.dividerText}>o continúa con</Text>
@@ -163,7 +243,7 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
             )}
           </TouchableOpacity>
 
-          {/* Register Links */}
+
           <View style={styles.registerContainer}>
             <Text style={styles.registerText}>¿No tienes cuenta?</Text>
             <TouchableOpacity onPress={() => navigation.navigate('RegisterWorker')}>
@@ -274,6 +354,17 @@ const styles = StyleSheet.create({
     color: Colors.dark,
     fontSize: 16,
     fontWeight: '500',
+  },
+  debugInfo: {
+    marginTop: 16,
+    padding: 12,
+    backgroundColor: '#f0f0f0',
+    borderRadius: 8,
+  },
+  debugText: {
+    fontSize: 12,
+    color: '#666',
+    fontFamily: 'monospace',
   },
   registerContainer: {
     marginTop: 32,
