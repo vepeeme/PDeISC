@@ -15,22 +15,25 @@ const router = express.Router();
 // Todas las rutas requieren autenticación
 router.use(authMiddleware);
 
-// 📊 DASHBOARD / ESTADÍSTICAS
+// 📊 DASHBOARD / ESTADÍSTICAS - ✅ CORREGIDO
 router.get('/dashboard/stats', async (req, res) => {
   try {
     let stats = {};
 
+    console.log('🔍 Obteniendo stats para rol:', req.user.rol);
+
     if (req.user.rol === 'admin') {
+      // Admin ve todo
       const totalUsuariosResult = await pool.query(
-        'SELECT COUNT(*) as total FROM usuarios WHERE activo = true'
+        'SELECT COUNT(*)::integer as total FROM usuarios WHERE activo = true'
       );
       
       const totalAreasResult = await pool.query(
-        'SELECT COUNT(*) as total FROM areas WHERE activo = true'
+        'SELECT COUNT(*)::integer as total FROM areas WHERE activo = true'
       );
       
       const totalActividadesResult = await pool.query(
-        'SELECT COUNT(*) as total FROM actividades'
+        'SELECT COUNT(*)::integer as total FROM actividades'
       );
       
       const actividadesPorEstadoResult = await pool.query(`
@@ -40,14 +43,16 @@ router.get('/dashboard/stats', async (req, res) => {
       `);
 
       stats = {
-        totalUsuarios: parseInt(totalUsuariosResult.rows[0].total),
-        totalAreas: parseInt(totalAreasResult.rows[0].total),
-        totalActividades: parseInt(totalActividadesResult.rows[0].total),
+        totalUsuarios: totalUsuariosResult.rows[0].total,
+        totalAreas: totalAreasResult.rows[0].total,
+        totalActividades: totalActividadesResult.rows[0].total,
         actividadesPorEstado: actividadesPorEstadoResult.rows
       };
+
     } else if (req.user.rol === 'encargado') {
+      // Encargado ve sus actividades
       const misActividadesResult = await pool.query(
-        'SELECT COUNT(*) as total FROM actividades WHERE encargado_id = $1',
+        'SELECT COUNT(*)::integer as total FROM actividades WHERE encargado_id = $1',
         [req.user.id]
       );
       
@@ -66,11 +71,13 @@ router.get('/dashboard/stats', async (req, res) => {
       `, [req.user.id]);
 
       stats = {
-        misActividades: parseInt(misActividadesResult.rows[0].total),
+        misActividades: misActividadesResult.rows[0].total,
         actividadesPorEstado: actividadesPorEstadoResult.rows,
-        trabajadoresEnMiArea: parseInt(trabajadoresAreaResult.rows[0].total)
+        trabajadoresEnMiArea: trabajadoresAreaResult.rows[0]?.total || 0
       };
+
     } else if (req.user.rol === 'trabajador') {
+      // Trabajador ve sus actividades asignadas
       const misActividadesResult = await pool.query(`
         SELECT COUNT(*)::integer as total
         FROM actividad_trabajador
@@ -86,10 +93,12 @@ router.get('/dashboard/stats', async (req, res) => {
       `, [req.user.id]);
 
       stats = {
-        misActividades: parseInt(misActividadesResult.rows[0].total),
+        misActividades: misActividadesResult.rows[0].total,
         actividadesPorEstado: actividadesPorEstadoResult.rows
       };
     }
+
+    console.log('✅ Stats obtenidas:', stats);
 
     res.json({
       exito: true,
@@ -97,12 +106,15 @@ router.get('/dashboard/stats', async (req, res) => {
     });
   } catch (error) {
     console.error('❌ Error al obtener estadísticas:', error);
+    console.error('Stack trace:', error.stack);
     res.status(500).json({
       exito: false,
-      mensaje: 'Error al obtener estadísticas'
+      mensaje: 'Error al obtener estadísticas',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 });
+
 // 📋 LISTAR ACTIVIDADES
 router.get('/', async (req, res) => {
   try {
@@ -185,6 +197,7 @@ router.get('/', async (req, res) => {
     });
   }
 });
+
 // 🔍 OBTENER ACTIVIDAD POR ID
 router.get('/:id', async (req, res) => {
   try {
@@ -250,7 +263,8 @@ router.get('/:id', async (req, res) => {
     });
   }
 });
-// CREAR ACTIVIDAD
+
+// ➕ CREAR ACTIVIDAD
 router.post('/', requireRole('admin', 'encargado'), validate(crearActividadSchema), async (req, res) => {
   try {
     const {
@@ -325,7 +339,7 @@ router.post('/', requireRole('admin', 'encargado'), validate(crearActividadSchem
   }
 });
 
-// ACTUALIZAR ACTIVIDAD
+// ✏️ ACTUALIZAR ACTIVIDAD
 router.put('/:id', requireRole('admin', 'encargado'), validate(actualizarActividadSchema), async (req, res) => {
   try {
     const { id } = req.params;
@@ -438,7 +452,7 @@ router.put('/:id', requireRole('admin', 'encargado'), validate(actualizarActivid
   }
 });
 
-// MARCAR COMO COMPLETADA
+// ✅ MARCAR COMO COMPLETADA (para trabajadores)
 router.put('/:id/completar', async (req, res) => {
   try {
     const { id } = req.params;
@@ -500,7 +514,8 @@ router.put('/:id/completar', async (req, res) => {
     });
   }
 });
-// ELIMINAR ACTIVIDAD
+
+// 🗑️ ELIMINAR ACTIVIDAD
 router.delete('/:id', requireRole('admin'), async (req, res) => {
   try {
     const { id } = req.params;
@@ -518,7 +533,8 @@ router.delete('/:id', requireRole('admin'), async (req, res) => {
     });
   }
 });
-// ASIGNAR TRABAJADORES
+
+// 👥 ASIGNAR TRABAJADORES
 router.post('/:id/asignar', requireRole('admin', 'encargado'), validate(asignarTrabajadoresSchema), async (req, res) => {
   try {
     const { id } = req.params;
@@ -564,7 +580,8 @@ router.post('/:id/asignar', requireRole('admin', 'encargado'), validate(asignarT
     });
   }
 });
-// AGREGAR COMENTARIO
+
+// 💬 AGREGAR COMENTARIO
 router.post('/:id/comentarios', validate(agregarComentarioSchema), async (req, res) => {
   try {
     const { id } = req.params;
@@ -588,7 +605,8 @@ router.post('/:id/comentarios', validate(agregarComentarioSchema), async (req, r
     });
   }
 });
-// OBTENER COMENTARIOS
+
+// 💬 OBTENER COMENTARIOS
 router.get('/:id/comentarios', async (req, res) => {
   try {
     const { id } = req.params;
