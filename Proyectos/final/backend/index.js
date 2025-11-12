@@ -19,10 +19,8 @@ const app = express();
 const PUERTO = process.env.PORT || 5000;
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
-//  CRÍTICO: TRUST PROXY PARA RENDER/HEROKU/NETLIFY
 app.set('trust proxy', 1);
 
-//  CORS - Permitir todos los orígenes en desarrollo, restringir en producción
 const allowedOrigins = [
   'http://localhost:19006',
   'http://localhost:8081',
@@ -33,32 +31,35 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: function(origin, callback) {
-    //  Permitir requests sin origin (apps móviles, Postman)
+    // Permitir requests sin origin (Postman, apps móviles)
     if (!origin) return callback(null, true);
     
-    //  En desarrollo, permitir todo
-    if (!IS_PRODUCTION) {
+    // En desarrollo, permitir localhost
+    if (!IS_PRODUCTION || origin.includes('localhost')) {
       return callback(null, true);
     }
     
-    //  En producción, verificar origen pero ser permisivo
+    // En producción, verificar lista de orígenes
     const isAllowed = allowedOrigins.some(allowed => 
-      origin.includes(allowed?.replace('*', '') || '')
+      origin === allowed || origin.includes(allowed?.replace('*', ''))
     );
     
     if (isAllowed) {
       callback(null, true);
     } else {
-      console.log('⚠️ Origen no permitido:', origin);
-      //  Aún así permitir (cambiar a false para bloquear)
-      callback(null, true);
+      console.log('⚠️ Origen bloqueado:', origin);
+      callback(new Error('Not allowed by CORS')); // ← Bloquear realmente
     }
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-  exposedHeaders: ['Authorization']
+  exposedHeaders: ['Authorization'],
+  preflightContinue: false,
+  optionsSuccessStatus: 204
 }));
+
+app.options('*', cors());
 
 //  Helmet con configuración para producción
 app.use(helmet({
