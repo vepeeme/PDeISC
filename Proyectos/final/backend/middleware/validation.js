@@ -1,6 +1,6 @@
 // backend/src/middleware/validation.js
 import Joi from 'joi';
-
+import { PUESTOS_DISPONIBLES } from '../constants/puestos.js';
 // Middleware genérico de validación
 export const validate = (schema) => {
   return (req, res, next) => {
@@ -56,7 +56,12 @@ export const registroTrabajadorSchema = Joi.object({
       'string.max': 'El teléfono no puede exceder 20 caracteres'
     }),
   area_id: Joi.number().integer().positive().allow(null),
-  puesto: Joi.string().max(100).allow(null, '')
+  puesto: Joi.string()
+    .valid(...PUESTOS_DISPONIBLES)
+    .allow(null, '')
+    .messages({
+      'any.only': `El puesto debe ser uno de los siguientes: ${PUESTOS_DISPONIBLES.join(', ')}`
+    })
 });
 
 export const registroEncargadoSchema = Joi.object({

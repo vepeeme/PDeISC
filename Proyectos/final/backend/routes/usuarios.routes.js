@@ -3,6 +3,8 @@ import express from 'express';
 import { pool } from '../config/database.js';
 import { authMiddleware, requireRole, checkOwnership } from '../middleware/auth.js';
 import { validate, actualizarUsuarioSchema } from '../middleware/validation.js';
+import { PUESTOS_DISPONIBLES, PUESTOS_AREAS } from '../constants/puestos.js';
+
 
 const router = express.Router();
 
@@ -301,6 +303,25 @@ router.get('/area/:area_id/trabajadores', async (req, res) => {
       mensaje: 'Error al obtener trabajadores del área'
     });
   }
+});
+
+//  OBTENER PUESTOS DISPONIBLES
+router.get('/puestos/disponibles', (req, res) => {
+  res.json({
+    exito: true,
+    puestos: PUESTOS_DISPONIBLES
+  });
+});
+
+//  OBTENER PUESTOS POR ÁREA
+router.get('/puestos/area/:areaId', (req, res) => {
+  const { areaId } = req.params;
+  const puestos = PUESTOS_AREAS[parseInt(areaId)] || [];
+  
+  res.json({
+    exito: true,
+    puestos
+  });
 });
 
 export default router;
